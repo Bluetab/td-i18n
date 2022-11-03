@@ -8,7 +8,7 @@ import Config
 config :td_i18n, TdI18n.Repo,
   username: "postgres",
   password: "postgres",
-  hostname: "localhost",
+  hostname: "postgres",
   database: "td_i18n_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
@@ -17,7 +17,6 @@ config :td_i18n, TdI18n.Repo,
 # you can enable the server option below.
 config :td_i18n, TdI18nWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "kor5zCCHXs7xpyr0jyD7IXlTJgKZQsYjVlpPHujbW9LdugYr1xqeYJvVKrZDQt7X",
   server: false
 
 # Print only warnings and errors during test
