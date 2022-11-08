@@ -7,9 +7,7 @@
 # General application configuration
 import Config
 
-config :td_i18n,
-  ecto_repos: [TdI18n.Repo],
-  generators: [binary_id: true]
+config :td_i18n, ecto_repos: [TdI18n.Repo]
 
 # Configures the endpoint
 config :td_i18n, TdI18nWeb.Endpoint,

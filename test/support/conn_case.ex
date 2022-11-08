@@ -20,8 +20,10 @@ defmodule TdI18nWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
+      import Assertions
       import Plug.Conn
       import Phoenix.ConnTest
+      import TdI18n.Factory
       import TdI18nWeb.ConnCase
 
       alias TdI18nWeb.Router.Helpers, as: Routes
