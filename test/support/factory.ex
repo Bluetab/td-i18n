@@ -10,7 +10,8 @@ defmodule TdI18n.Factory do
 
   def locale_factory do
     %Locale{
-      lang: sequence("locale_lang")
+      lang: sequence("locale_lang"),
+      messages: []
     }
   end
 
@@ -23,6 +24,16 @@ defmodule TdI18n.Factory do
       description: sequence("message_description")
     }
     |> merge_attributes(attrs)
+  end
+
+  def user_factory do
+    %{
+      id: System.unique_integer([:positive]),
+      user_name: sequence("user_name"),
+      full_name: sequence("full_name"),
+      external_id: sequence("user_external_id"),
+      email: sequence("email") <> "@example.com"
+    }
   end
 
   defp default_assoc(attrs, id_key, key) do

@@ -1,29 +1,48 @@
 # This file is responsible for configuring your application
-# and its dependencies with the aid of the Config module.
+# and its dependencies with the aid of the Mix.Config module.
 #
 # This configuration file is loaded before any dependency and
 # is restricted to this project.
-
-# General application configuration
 import Config
 
+# Environment
+config :td_i18n, :env, Mix.env()
+
+# General application configuration
 config :td_i18n, ecto_repos: [TdI18n.Repo]
+config :td_i18n, TdI18n.Repo, pool_size: 4
 
 # Configures the endpoint
 config :td_i18n, TdI18nWeb.Endpoint,
+  http: [port: 4003],
   url: [host: "localhost"],
-  render_errors: [view: TdI18nWeb.ErrorView, accepts: ~w(json), layout: false],
-  pubsub_server: TdI18n.PubSub,
-  live_view: [signing_salt: "gLyJvnK3"]
+  render_errors: [view: TdI18nWeb.ErrorView, accepts: ~w(json)]
+
+# Configures Auth module Guardian
+config :td_i18n, TdI18n.Auth.Guardian,
+  allowed_algos: ["HS512"],
+  issuer: "tdauth",
+  ttl: {1, :hours},
+  secret_key: "SuperSecretTruedat"
+
+config :td_i18n, hashing_module: Comeonin.Bcrypt
 
 # Configures Elixir's Logger
+# set EX_LOGGER_FORMAT environment variable to override Elixir's Logger format
+# (without the 'end of line' character)
+# EX_LOGGER_FORMAT='$date $time [$level] $message'
 config :logger, :console,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  format:
+    (System.get_env("EX_LOGGER_FORMAT") || "$date\T$time\Z [$level]$levelpad $metadata$message") <>
+      "\n",
+  level: :info,
+  metadata: [:pid, :module],
+  utc_log: true
 
-# Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :td_cache, redis_host: "redis"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{config_env()}.exs"
+import_config "#{Mix.env()}.exs"

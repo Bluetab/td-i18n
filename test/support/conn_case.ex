@@ -16,6 +16,7 @@ defmodule TdI18nWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
+  import TdI18n.Authentication, only: :functions
 
   using do
     quote do
@@ -35,6 +36,16 @@ defmodule TdI18nWeb.ConnCase do
 
   setup tags do
     TdI18n.DataCase.setup_sandbox(tags)
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+
+    case tags[:authentication] do
+      nil ->
+        [conn: Phoenix.ConnTest.build_conn()]
+
+      auth_opts ->
+        auth_opts
+        |> create_claims()
+        |> create_user_auth_conn()
+        |> assign_permissions(auth_opts[:permissions])
+    end
   end
 end

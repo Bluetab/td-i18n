@@ -1,88 +1,143 @@
 defmodule TdI18nWeb.LocaleControllerTest do
   use TdI18nWeb.ConnCase
 
-  import TdI18n.LocalesFixtures
-
-  alias TdI18n.Locales.Locale
-
-  @create_attrs %{
-    is_default: true,
-    lang: "some lang"
-  }
-  @update_attrs %{
-    is_default: false,
-    lang: "some updated lang"
-  }
-  @invalid_attrs %{is_default: nil, lang: nil}
-
-  setup %{conn: conn} do
-    {:ok, conn: put_req_header(conn, "accept", "application/json")}
-  end
-
-  describe "index" do
+  describe "GET /api/locales" do
     test "lists all locales", %{conn: conn} do
-      conn = get(conn, Routes.locale_path(conn, :index))
-      assert json_response(conn, 200)["data"] == []
+      %{locale_id: locale_id, id: id} = insert(:message)
+
+      assert %{"data" => data} =
+               conn
+               |> get(Routes.locale_path(conn, :index))
+               |> json_response(:ok)
+
+      assert [locale] = data
+
+      assert %{
+               "id" => ^locale_id,
+               "is_default" => _,
+               "lang" => _,
+               "messages" => [%{"id" => ^id, "definition" => _, "description" => _}]
+             } = locale
     end
   end
 
-  describe "create locale" do
+  describe "POST /api/locales" do
+    @tag authentication: [role: "admin"]
     test "renders locale when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.locale_path(conn, :create), locale: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+      params = string_params_for(:locale)
 
-      conn = get(conn, Routes.locale_path(conn, :show, id))
+      assert %{"data" => data} =
+               conn
+               |> post(Routes.locale_path(conn, :create), locale: params)
+               |> json_response(:created)
 
-      assert %{
-               "id" => ^id,
-               "is_default" => true,
-               "lang" => "some lang"
-             } = json_response(conn, 200)["data"]
+      assert %{"id" => id} = data
+
+      assert %{"data" => data} =
+               conn
+               |> get(Routes.locale_path(conn, :show, id))
+               |> json_response(:ok)
+
+      assert_maps_equal(data, params, ["is_default", "lang"])
     end
 
+    @tag authentication: [role: "admin"]
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.locale_path(conn, :create), locale: @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
+      params = %{"lang" => nil, "is_default" => nil}
+
+      assert %{"errors" => errors} =
+               conn
+               |> post(Routes.locale_path(conn, :create), locale: params)
+               |> json_response(:unprocessable_entity)
+
+      assert errors == %{"is_default" => ["can't be blank"], "lang" => ["can't be blank"]}
+    end
+
+    @tag authentication: [role: "user"]
+    test "responds forbidden when user is not admin", %{conn: conn} do
+      assert %{"errors" => errors} =
+               conn
+               |> post(Routes.locale_path(conn, :create), locale: %{})
+               |> json_response(:forbidden)
+
+      assert errors == %{"detail" => "Forbidden"}
     end
   end
 
-  describe "update locale" do
-    setup [:create_locale]
+  describe "PATCH /api/locales/:id" do
+    setup :create_locale
 
-    test "renders locale when data is valid", %{conn: conn, locale: %Locale{id: id} = locale} do
-      conn = put(conn, Routes.locale_path(conn, :update, locale), locale: @update_attrs)
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+    @tag authentication: [role: "admin"]
+    test "renders locale when data is valid", %{conn: conn, locale: %{id: id} = locale} do
+      params =
+        string_params_for(:locale)
+        |> Map.put("messages", [string_params_for(:message, locale_id: id)])
 
-      conn = get(conn, Routes.locale_path(conn, :show, id))
+      assert %{"data" => data} =
+               conn
+               |> patch(Routes.locale_path(conn, :update, locale), locale: params)
+               |> json_response(:ok)
 
-      assert %{
-               "id" => ^id,
-               "is_default" => false,
-               "lang" => "some updated lang"
-             } = json_response(conn, 200)["data"]
+      assert %{"id" => ^id} = data
+
+      assert %{"data" => data} =
+               conn
+               |> get(Routes.locale_path(conn, :show, id))
+               |> json_response(:ok)
+
+      assert_maps_equal(data, params, ["is_default", "lang"])
     end
 
+    @tag authentication: [role: "admin"]
     test "renders errors when data is invalid", %{conn: conn, locale: locale} do
-      conn = put(conn, Routes.locale_path(conn, :update, locale), locale: @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
+      params = %{"lang" => nil, "is_default" => nil}
+
+      assert %{"errors" => errors} =
+               conn
+               |> patch(Routes.locale_path(conn, :update, locale), locale: params)
+               |> json_response(:unprocessable_entity)
+
+      assert errors == %{"is_default" => ["can't be blank"], "lang" => ["can't be blank"]}
+    end
+
+    @tag authentication: [role: "user"]
+    test "responds forbidden when user is not admin", %{conn: conn, locale: locale} do
+      assert %{"errors" => errors} =
+               conn
+               |> patch(Routes.locale_path(conn, :update, locale), locale: %{})
+               |> json_response(:forbidden)
+
+      assert errors == %{"detail" => "Forbidden"}
     end
   end
 
-  describe "delete locale" do
-    setup [:create_locale]
+  describe "DELETE /api/locales/:id" do
+    setup :create_locale
 
+    @tag authentication: [role: "admin"]
     test "deletes chosen locale", %{conn: conn, locale: locale} do
-      conn = delete(conn, Routes.locale_path(conn, :delete, locale))
-      assert response(conn, 204)
+      assert conn
+             |> delete(Routes.locale_path(conn, :delete, locale))
+             |> response(:no_content)
 
-      assert_error_sent 404, fn ->
+      assert_error_sent :not_found, fn ->
         get(conn, Routes.locale_path(conn, :show, locale))
       end
+    end
+
+    @tag authentication: [role: "user"]
+    test "responds forbidden when user is not admin", %{conn: conn, locale: locale} do
+      assert %{"errors" => errors} =
+               conn
+               |> delete(Routes.locale_path(conn, :delete, locale))
+               |> json_response(:forbidden)
+
+      assert errors == %{"detail" => "Forbidden"}
     end
   end
 
   defp create_locale(_) do
-    locale = locale_fixture()
-    %{locale: locale}
+    %{locale: locale} = insert(:message)
+    [locale: locale]
   end
 end

@@ -3,102 +3,40 @@ defmodule TdI18n.Locales do
   The Locales context.
   """
 
-  import Ecto.Query, warn: false
-  alias TdI18n.Repo
+  import Ecto.Query
 
   alias TdI18n.Locales.Locale
+  alias TdI18n.Repo
 
-  @doc """
-  Returns the list of locales.
-
-  ## Examples
-
-      iex> list_locales()
-      [%Locale{}, ...]
-
-  """
   def list_locales do
-    Repo.all(Locale)
+    Locale
+    |> preload(:messages)
+    |> Repo.all()
   end
 
-  @doc """
-  Gets a single locale.
+  def get_locale!(id) do
+    Locale
+    |> preload(:messages)
+    |> Repo.get!(id)
+    |> Repo.preload(:messages)
+  end
 
-  Raises `Ecto.NoResultsError` if the Locale does not exist.
-
-  ## Examples
-
-      iex> get_locale!(123)
-      %Locale{}
-
-      iex> get_locale!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_locale!(id), do: Repo.get!(Locale, id)
-
-  @doc """
-  Creates a locale.
-
-  ## Examples
-
-      iex> create_locale(%{field: value})
-      {:ok, %Locale{}}
-
-      iex> create_locale(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_locale(attrs \\ %{}) do
-    %Locale{}
-    |> Locale.changeset(attrs)
+  def create_locale(params \\ %{}) do
+    %Locale{messages: []}
+    |> Locale.changeset(params)
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a locale.
-
-  ## Examples
-
-      iex> update_locale(locale, %{field: new_value})
-      {:ok, %Locale{}}
-
-      iex> update_locale(locale, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_locale(%Locale{} = locale, attrs) do
+  def update_locale(%Locale{} = locale, params) do
     locale
-    |> Locale.changeset(attrs)
+    |> Repo.preload(:messages)
+    |> Locale.changeset(params)
     |> Repo.update()
   end
 
-  @doc """
-  Deletes a locale.
-
-  ## Examples
-
-      iex> delete_locale(locale)
-      {:ok, %Locale{}}
-
-      iex> delete_locale(locale)
-      {:error, %Ecto.Changeset{}}
-
-  """
   def delete_locale(%Locale{} = locale) do
-    Repo.delete(locale)
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking locale changes.
-
-  ## Examples
-
-      iex> change_locale(locale)
-      %Ecto.Changeset{data: %Locale{}}
-
-  """
-  def change_locale(%Locale{} = locale, attrs \\ %{}) do
-    Locale.changeset(locale, attrs)
+    locale
+    |> Repo.preload(:messages)
+    |> Repo.delete()
   end
 end

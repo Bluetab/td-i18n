@@ -24,6 +24,13 @@ defmodule TdI18nWeb do
       import Plug.Conn
       import TdI18nWeb.Gettext
       alias TdI18nWeb.Router.Helpers, as: Routes
+
+      defp authorize(conn) do
+        case conn.assigns[:current_resource] do
+          %{role: "admin"} -> :ok
+          _ -> {:error, :forbidden}
+        end
+      end
     end
   end
 

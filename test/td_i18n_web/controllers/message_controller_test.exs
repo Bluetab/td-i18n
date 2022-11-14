@@ -1,62 +1,69 @@
 defmodule TdI18nWeb.MessageControllerTest do
   use TdI18nWeb.ConnCase
 
-  alias TdI18n.Messages.Message
-
-  @update_attrs %{
-    definition: "some updated definition",
-    description: "some updated description"
-  }
-  @invalid_attrs %{definition: nil, description: nil}
-
-  setup %{conn: conn} do
-    {:ok, conn: put_req_header(conn, "accept", "application/json")}
-  end
-
-  describe "index" do
+  describe "GET /api/messages" do
+    @tag authentication: [role: "admin"]
     test "lists all messages", %{conn: conn} do
       conn = get(conn, Routes.message_path(conn, :index))
       assert json_response(conn, 200)["data"] == []
     end
   end
 
-  describe "update message" do
-    setup [:create_message]
+  describe "PUT /api/messages/:id" do
+    setup :create_message
 
-    test "renders message when data is valid", %{conn: conn, message: %Message{id: id} = message} do
-      conn = put(conn, Routes.message_path(conn, :update, message), message: @update_attrs)
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+    @tag authentication: [role: "admin"]
+    test "renders message when data is valid", %{conn: conn, message: %{id: id} = message} do
+      params = string_params_for(:message)
 
-      conn = get(conn, Routes.message_path(conn, :show, id))
+      assert %{"data" => data} =
+               conn
+               |> put(Routes.message_path(conn, :update, message), message: params)
+               |> json_response(:ok)
 
-      assert %{
-               "id" => ^id,
-               "definition" => "some updated definition",
-               "description" => "some updated description"
-             } = json_response(conn, 200)["data"]
+      assert %{"id" => ^id} = data
+
+      assert %{"data" => data} =
+               conn
+               |> get(Routes.message_path(conn, :show, id))
+               |> json_response(:ok)
+
+      assert_maps_equal(data, params, ["description", "definition", "message_id"])
     end
 
+    @tag authentication: [role: "admin"]
     test "renders errors when data is invalid", %{conn: conn, message: message} do
-      conn = put(conn, Routes.message_path(conn, :update, message), message: @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
+      params = %{"definition" => nil, "description" => nil, "message_id" => nil}
+
+      assert %{"errors" => errors} =
+               conn
+               |> put(Routes.message_path(conn, :update, message), message: params)
+               |> json_response(:unprocessable_entity)
+
+      assert errors == %{
+               "definition" => ["can't be blank"],
+               "description" => ["can't be blank"],
+               "message_id" => ["can't be blank"]
+             }
     end
   end
 
-  describe "delete message" do
-    setup [:create_message]
+  describe "DELETE /api/messages/:id" do
+    setup :create_message
 
+    @tag authentication: [role: "admin"]
     test "deletes chosen message", %{conn: conn, message: message} do
-      conn = delete(conn, Routes.message_path(conn, :delete, message))
-      assert response(conn, 204)
+      assert conn
+             |> delete(Routes.message_path(conn, :delete, message))
+             |> response(:no_content)
 
-      assert_error_sent 404, fn ->
+      assert_error_sent :not_found, fn ->
         get(conn, Routes.message_path(conn, :show, message))
       end
     end
   end
 
   defp create_message(_) do
-    message = insert(:message)
-    [message: message]
+    [message: insert(:message)]
   end
 end

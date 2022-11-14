@@ -6,19 +6,27 @@ defmodule TdI18nWeb.FallbackController do
   """
   use TdI18nWeb, :controller
 
+  alias TdI18nWeb.ChangesetView
+  alias TdI18nWeb.ErrorView
+
   # This clause handles errors returned by Ecto's insert/update/delete.
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)
-    |> put_view(TdI18nWeb.ChangesetView)
+    |> put_view(ChangesetView)
     |> render("error.json", changeset: changeset)
   end
 
-  # This clause is an example of how to handle resources that cannot be found.
-  def call(conn, {:error, :not_found}) do
+  def call(conn, {:error, :not_found}), do: render_error(conn, :not_found, "404.json")
+  def call(conn, {:error, :forbidden}), do: render_error(conn, :forbidden, "403.json")
+
+  def call(conn, {:error, :unprocessable_entity}),
+    do: render_error(conn, :unprocessable_entity, "422.json")
+
+  defp render_error(conn, status, template) do
     conn
-    |> put_status(:not_found)
-    |> put_view(TdI18nWeb.ErrorView)
-    |> render(:"404")
+    |> put_status(status)
+    |> put_view(ErrorView)
+    |> render(template)
   end
 end

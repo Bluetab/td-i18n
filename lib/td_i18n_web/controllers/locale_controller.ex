@@ -11,8 +11,14 @@ defmodule TdI18nWeb.LocaleController do
     render(conn, "index.json", locales: locales)
   end
 
+  def show(conn, %{"id" => id}) do
+    locale = Locales.get_locale!(id)
+    render(conn, "show.json", locale: locale)
+  end
+
   def create(conn, %{"locale" => locale_params}) do
-    with {:ok, %Locale{} = locale} <- Locales.create_locale(locale_params) do
+    with :ok <- authorize(conn),
+         {:ok, %Locale{} = locale} <- Locales.create_locale(locale_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.locale_path(conn, :show, locale))
@@ -20,15 +26,11 @@ defmodule TdI18nWeb.LocaleController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    locale = Locales.get_locale!(id)
-    render(conn, "show.json", locale: locale)
-  end
-
   def update(conn, %{"id" => id, "locale" => locale_params}) do
     locale = Locales.get_locale!(id)
 
-    with {:ok, %Locale{} = locale} <- Locales.update_locale(locale, locale_params) do
+    with :ok <- authorize(conn),
+         {:ok, %Locale{} = locale} <- Locales.update_locale(locale, locale_params) do
       render(conn, "show.json", locale: locale)
     end
   end
@@ -36,7 +38,8 @@ defmodule TdI18nWeb.LocaleController do
   def delete(conn, %{"id" => id}) do
     locale = Locales.get_locale!(id)
 
-    with {:ok, %Locale{}} <- Locales.delete_locale(locale) do
+    with :ok <- authorize(conn),
+         {:ok, %Locale{}} <- Locales.delete_locale(locale) do
       send_resp(conn, :no_content, "")
     end
   end
