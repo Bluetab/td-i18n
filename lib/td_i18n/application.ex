@@ -8,16 +8,9 @@ defmodule TdI18n.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
       TdI18n.Repo,
-      # Start the Telemetry supervisor
-      TdI18nWeb.Telemetry,
-      # Start the PubSub system
-      {Phoenix.PubSub, name: TdI18n.PubSub},
-      # Start the Endpoint (http/https)
+      TdI18n.Scheduler,
       TdI18nWeb.Endpoint
-      # Start a worker by calling: TdI18n.Worker.start_link(arg)
-      # {TdI18n.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

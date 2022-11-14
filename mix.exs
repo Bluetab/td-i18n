@@ -55,6 +55,7 @@ defmodule TdI18n.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:guardian, "~> 2.0"},
+      {:quantum, "~> 3.0"},
       {:td_cache, git: "https://github.com/Bluetab/td-cache.git", tag: "4.48.0", override: true},
       {:ex_machina, "~> 2.4", only: :test},
       {:assertions, "~> 0.19", only: :test},

@@ -17,6 +17,8 @@ config :td_i18n, TdI18n.Repo,
 # you can enable the server option below.
 config :td_i18n, TdI18nWeb.Endpoint, server: false
 
+config :td_i18n, TdI18n.Scheduler, jobs: []
+
 # Print only warnings and errors during test
 config :logger, level: :warn
 
