@@ -4,7 +4,11 @@ defmodule TdI18n.MixProject do
   def project do
     [
       app: :td_i18n,
-      version: "0.1.0",
+      version:
+        case System.get_env("APP_VERSION") do
+          nil -> "4.56.0-local"
+          v -> v
+        end,
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
