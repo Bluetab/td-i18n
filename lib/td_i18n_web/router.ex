@@ -13,6 +13,8 @@ defmodule TdI18nWeb.Router do
   scope "/api", TdI18nWeb do
     pipe_through :api
 
+    get "/ping", PingController, :ping
+
     resources "/locales", LocaleController, only: [:index, :show]
   end
 
