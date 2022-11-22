@@ -10,7 +10,6 @@ defmodule TdI18n.Locales.Locale do
   alias TdI18n.Messages.Message
 
   schema "locales" do
-    field :is_default, :boolean, default: false
     field :lang, :string
 
     has_many :messages, Message
@@ -20,7 +19,7 @@ defmodule TdI18n.Locales.Locale do
 
   def changeset(locale, attrs) do
     locale
-    |> cast(attrs, [:lang, :is_default])
-    |> validate_required([:lang, :is_default])
+    |> cast(attrs, [:lang])
+    |> validate_required([:lang])
   end
 end

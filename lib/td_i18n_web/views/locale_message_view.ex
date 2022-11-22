@@ -1,9 +1,7 @@
 defmodule TdI18nWeb.LocaleMessageView do
   use TdI18nWeb, :view
 
-  alias TdI18nWeb.MessageView
-
-  def render("show.json", %{messages: messages}) do
-    %{data: render_many(messages, MessageView, "message.json")}
+  def render("index.json", %{messages: messages}) do
+    Map.new(messages, fn %{message_id: id, definition: definition} -> {id, definition} end)
   end
 end

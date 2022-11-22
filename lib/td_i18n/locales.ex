@@ -17,9 +17,14 @@ defmodule TdI18n.Locales do
     |> Repo.all()
   end
 
+  def get_by!(clauses) do
+    Locale
+    |> Repo.get_by!(clauses)
+    |> Repo.preload(:messages)
+  end
+
   def get_locale!(id) do
     Locale
-    |> preload(:messages)
     |> Repo.get!(id)
     |> Repo.preload(:messages)
   end

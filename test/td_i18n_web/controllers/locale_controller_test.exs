@@ -14,7 +14,6 @@ defmodule TdI18nWeb.LocaleControllerTest do
 
       assert %{
                "id" => ^locale_id,
-               "is_default" => _,
                "lang" => _,
                "messages" => [%{"id" => ^id, "definition" => _, "description" => _}]
              } = locale
@@ -38,19 +37,19 @@ defmodule TdI18nWeb.LocaleControllerTest do
                |> get(Routes.locale_path(conn, :show, id))
                |> json_response(:ok)
 
-      assert_maps_equal(data, params, ["is_default", "lang"])
+      assert_maps_equal(data, params, ["lang"])
     end
 
     @tag authentication: [role: "admin"]
     test "renders errors when data is invalid", %{conn: conn} do
-      params = %{"lang" => nil, "is_default" => nil}
+      params = %{"lang" => nil}
 
       assert %{"errors" => errors} =
                conn
                |> post(Routes.locale_path(conn, :create), locale: params)
                |> json_response(:unprocessable_entity)
 
-      assert errors == %{"is_default" => ["can't be blank"], "lang" => ["can't be blank"]}
+      assert errors == %{"lang" => ["can't be blank"]}
     end
 
     @tag authentication: [role: "user"]
@@ -85,19 +84,19 @@ defmodule TdI18nWeb.LocaleControllerTest do
                |> get(Routes.locale_path(conn, :show, id))
                |> json_response(:ok)
 
-      assert_maps_equal(data, params, ["is_default", "lang"])
+      assert_maps_equal(data, params, ["lang"])
     end
 
     @tag authentication: [role: "admin"]
     test "renders errors when data is invalid", %{conn: conn, locale: locale} do
-      params = %{"lang" => nil, "is_default" => nil}
+      params = %{"lang" => nil}
 
       assert %{"errors" => errors} =
                conn
                |> patch(Routes.locale_path(conn, :update, locale), locale: params)
                |> json_response(:unprocessable_entity)
 
-      assert errors == %{"is_default" => ["can't be blank"], "lang" => ["can't be blank"]}
+      assert errors == %{"lang" => ["can't be blank"]}
     end
 
     @tag authentication: [role: "user"]

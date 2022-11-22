@@ -1,6 +1,26 @@
 defmodule TdI18nWeb.LocaleMessageControllerTest do
   use TdI18nWeb.ConnCase
 
+  describe "GET /api/locales/:locale_id/messages" do
+    test "returns messages by locale id", %{conn: conn} do
+      %{locale_id: locale_id, message_id: message_id, definition: definition} = insert(:message)
+
+      assert %{message_id => definition} ==
+               conn
+               |> get(Routes.locale_message_path(conn, :index, locale_id))
+               |> json_response(:ok)
+    end
+
+    test "returns messages by lang", %{conn: conn} do
+      %{locale: %{lang: lang}, message_id: message_id, definition: definition} = insert(:message)
+
+      assert %{message_id => definition} ==
+               conn
+               |> get(Routes.locale_message_path(conn, :index, lang))
+               |> json_response(:ok)
+    end
+  end
+
   describe "POST /api/locales/:locale_id/messages" do
     @tag authentication: [role: "admin"]
     test "renders message when data is valid", %{conn: conn} do
