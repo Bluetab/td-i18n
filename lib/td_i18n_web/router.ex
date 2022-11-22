@@ -15,7 +15,11 @@ defmodule TdI18nWeb.Router do
 
     get "/ping", PingController, :ping
 
-    resources "/locales", LocaleController, only: [:index, :show]
+    resources "/locales", LocaleController, only: [:index, :show] do
+      resources "/messages", LocaleMessageController,
+        only: [:index],
+        name: "message"
+    end
   end
 
   scope "/api", TdI18nWeb do

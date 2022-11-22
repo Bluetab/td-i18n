@@ -15,7 +15,7 @@ defmodule TdI18nWeb.LocaleView do
     messages = render_many(messages, MessageView, "message.json")
 
     locale
-    |> Map.take([:id, :lang, :is_default])
+    |> Map.take([:id, :lang])
     |> Map.put(:messages, messages)
   end
 end
