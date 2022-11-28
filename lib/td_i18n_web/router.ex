@@ -2,7 +2,6 @@ defmodule TdI18nWeb.Router do
   use TdI18nWeb, :router
 
   pipeline :api do
-    plug TdI18n.Auth.Pipeline.Unsecure
     plug :accepts, ["json"]
   end
 
