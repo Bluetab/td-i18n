@@ -3,6 +3,10 @@ defmodule TdI18n.Messages do
   The Messages context.
   """
 
+  import Ecto.Query
+
+  require Logger
+
   alias TdI18n.Locales.Locale
   alias TdI18n.Messages.Message
   alias TdI18n.Repo
@@ -28,4 +32,18 @@ defmodule TdI18n.Messages do
   def delete_message(%Message{} = message) do
     Repo.delete(message)
   end
+
+  def delete_deprecated_messages(message_ids, definitions) do
+    Message
+    |> where([m], m.message_id in ^message_ids)
+    |> or_where([m], m.definition in ^definitions)
+    |> Repo.delete_all()
+    |> maybe_log()
+  end
+
+  defp maybe_log({n, _}) when is_integer(n) and n > 0 do
+    Logger.info("Deleted #{n} deprecated messages")
+  end
+
+  defp maybe_log(_), do: :ok
 end
