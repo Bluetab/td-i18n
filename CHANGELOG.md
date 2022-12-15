@@ -2,8 +2,9 @@
 
 ## [Unreleased]
 
-## Added
+### Added
 
+- [TD-3919] Add glossary and subscope translations
 - [TD-5367] Update messages for grant details
 
 ## [4.57.0] 2022-12-12
