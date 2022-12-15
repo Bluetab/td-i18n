@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+## Added
+
+- [TD-5367] Update messages for grant details
+
 ## [4.57.0] 2022-12-12
 
 ### Added
