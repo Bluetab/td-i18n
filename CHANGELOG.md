@@ -7,6 +7,7 @@
 - [TD-3919] Add glossary and subscope translations
 - [TD-5367] Update messages for grant details
 - [TD-4300] Update messages for implementations and auth
+- [TD-5368] Editable checkbox translation
 
 ## [4.57.0] 2022-12-12
 
