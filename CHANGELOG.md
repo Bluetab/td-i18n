@@ -8,6 +8,7 @@
 - [TD-5367] Update messages for grant details
 - [TD-4300] Update messages for implementations and auth
 - [TD-5368] Editable checkbox translation
+- [TD-5369] Update messages for new subscription `remediation_created`
 
 ## [4.57.0] 2022-12-12
 
