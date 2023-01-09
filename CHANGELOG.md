@@ -5,6 +5,8 @@
 ### Added
 
 - [TD-1968] Endpoint to create multiple messages for the same `message_id`
+- [TD-5199] Added messages for delete rule error if rule has active
+  implementations
 
 ## [4.58.1] 2022-12-27
 
