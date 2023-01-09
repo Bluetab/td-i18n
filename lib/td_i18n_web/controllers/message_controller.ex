@@ -11,6 +11,15 @@ defmodule TdI18nWeb.MessageController do
     render(conn, "index.json", messages: messages)
   end
 
+  def create(conn, %{"message" => %{"message_id" => message_id, "langs" => langs}}) do
+    with :ok <- authorize(conn),
+         {:ok, messages} <- Messages.create_messages(message_id, langs) do
+      conn
+      |> put_status(:created)
+      |> render("index.json", messages: messages)
+    end
+  end
+
   def show(conn, %{"id" => id}) do
     message = Messages.get_message!(id)
     render(conn, "show.json", message: message)

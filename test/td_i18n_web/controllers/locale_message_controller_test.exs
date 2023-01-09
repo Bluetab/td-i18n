@@ -55,7 +55,6 @@ defmodule TdI18nWeb.LocaleMessageControllerTest do
 
       assert errors == %{
                "definition" => ["can't be blank"],
-               "description" => ["can't be blank"],
                "message_id" => ["can't be blank"]
              }
     end
