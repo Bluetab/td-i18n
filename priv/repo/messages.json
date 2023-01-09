@@ -1118,6 +1118,8 @@
     "rule.error.minimum.required": "Minimun threshold required",
     "rule.error.rule_implementations.rule.delete.existing.implementations": "All rule implementations should be removed",
     "rule.error.rule_name_bc_id.unique_constraint": "Duplicated rule name. Edit name or associated business concept.",
+    "deleteRule.error.rule_implementations.active_implementations":
+      "This rule has active implementations. All active implementations should be removed",
     "rule.form.accordion.select": "Select",
     "rule.form.concept.label": "Concept",
     "rule.form.tooltip.type": "Defines the rule to be executed on the data. For certain types of rules it will be necessary to entry aditional parameters",
@@ -3462,6 +3464,8 @@
     "rule.error.minimum.required": "Limite minimo requerido",
     "rule.error.rule_implementations.rule.delete.existing.implementations": "Todas las implementaciones de una regla deben ser eliminadas",
     "rule.error.rule_name_bc_id.unique_constraint": "La regla ya existe con ese nombre y concepto asociado",
+    "deleteRule.error.rule_implementations.active_implementations":
+      "Esta regla tiene implementaciones activas. Todas las implementaciones activas deben ser borradas",
     "rule.form.accordion.select": "Seleccionar",
     "rule.form.concept.label": "Concepto",
     "rule.form.tooltip.type": "Define la regla que se quiere ejecutar sobre el dato. Para ciertos tipos de regla será necesario introducir parámetros de la regla",
