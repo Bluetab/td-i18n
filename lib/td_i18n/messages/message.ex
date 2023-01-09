@@ -22,7 +22,7 @@ defmodule TdI18n.Messages.Message do
   def changeset(message, attrs) do
     message
     |> cast(attrs, [:definition, :description, :message_id])
-    |> validate_required([:definition, :description, :message_id])
+    |> validate_required([:definition, :message_id])
     |> foreign_key_constraint(:locale)
     |> unique_constraint([:locale_id, :message_id])
   end

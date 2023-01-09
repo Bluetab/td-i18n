@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-1968] Endpoint to create multiple messages for the same `message_id`
+
 ## [4.58.1] 2022-12-27
 
 ### Added

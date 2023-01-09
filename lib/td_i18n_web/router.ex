@@ -30,6 +30,6 @@ defmodule TdI18nWeb.Router do
         name: "message"
     end
 
-    resources "/messages", MessageController, only: [:update, :delete, :index, :show]
+    resources "/messages", MessageController, only: [:update, :delete, :index, :show, :create]
   end
 end

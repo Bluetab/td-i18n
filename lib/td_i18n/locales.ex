@@ -29,6 +29,8 @@ defmodule TdI18n.Locales do
     |> Repo.preload(:messages)
   end
 
+  def get_locale(id), do: Repo.get(Locale, id)
+
   def create_locale(params \\ %{}) do
     %Locale{messages: []}
     |> Locale.changeset(params)
