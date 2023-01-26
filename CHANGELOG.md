@@ -4,6 +4,7 @@
 
 ### Added
 
+- [TD-5473] Messages for `structure_note_updated` subscription
 - [TD-5300] Messages for ReferenceDataset domains
 
 ## [4.59.0] 2023-01-16
