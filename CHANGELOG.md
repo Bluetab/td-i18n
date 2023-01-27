@@ -6,6 +6,8 @@
 
 - [TD-5473] Messages for `structure_note_updated` subscription
 - [TD-5300] Messages for ReferenceDataset domains
+- [TD-5478] Added messages to convert basic implementation to default or raw
+  implementation
 - [TD-3805] Messages for Td-df Hierarchies
 
 ## [4.59.0] 2023-01-16
