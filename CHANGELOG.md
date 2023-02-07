@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-5479] Messages for external_ref in grants
+
 ## [5.0.0] 2023-01-30
 
 ### Added
