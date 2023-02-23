@@ -3,11 +3,13 @@
 ## [Unreleased]
 
 ### Added
+
 - [TD-5471] UploadModal update message
+- [TD-4554] Messages for concept links manager
 
 ### Remove
 
-- [TD-3541] Unused messages 
+- [TD-3541] Unused messages
 
 ## [5.1.0] 2023-02-13
 
