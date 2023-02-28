@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-5471] UploadModal update message
+- [TD-5599] Messages for Tasks
 - [TD-4554] Messages for concept links manager
 
 ### Remove
