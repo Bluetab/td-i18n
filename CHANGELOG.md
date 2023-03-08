@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-4438] Referenced in reference dataset field operator
+
 ## [5.2.0] 2023-02-28
 
 ### Added
