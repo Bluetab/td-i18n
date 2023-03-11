@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-4438] Referenced in reference dataset field operator
+- [TD-5509] Data structure link form messages
 
 ## [5.2.0] 2023-02-28
 
@@ -24,6 +25,7 @@
 
 - [TD-5479] Messages for external_ref in grants
 - [TD-5444] Message for structures showed when total exceed the limit
+
 
 ## [5.0.0] 2023-01-30
 
