@@ -6,6 +6,7 @@
 
 - [TD-4438] Referenced in reference dataset field operator
 - [TD-5509] Data structure link form messages
+- [TD-3806] Messages for hierarchy widget
 
 ## [5.2.0] 2023-02-28
 
