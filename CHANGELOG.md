@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-5661] Multiple structrures grant requests view
+
 ## [5.5.0] 2023-04-18
 
 ### Added
