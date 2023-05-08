@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-5661] Multiple structrures grant requests view
+- [TD-4243] Data Structure Note Events
 
 ## [5.5.0] 2023-04-18
 
