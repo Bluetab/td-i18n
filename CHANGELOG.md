@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- [TD-5491] Add link to the structure and the technical name in the downloded files of structures metadata
+
 ### Changed
 
 - [TD-5756] Business concept title relation messages
