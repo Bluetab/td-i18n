@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+- [TD-5756] Business concept title relation messages
+
 ## [5.6.0] 2023-05-09
 
 ### Added
