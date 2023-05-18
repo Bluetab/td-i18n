@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-5491] Add link to the structure and the technical name in the downloded files of structures metadata
+- [TD-5504] Structure domains for implementations
 
 ### Changed
 
