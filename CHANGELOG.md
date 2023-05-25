@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-3916] Hierarchy depth messages
+
 ## [5.7.0] 2023-05-23
 
 ### Added
