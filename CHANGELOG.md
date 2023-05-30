@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-3916] Hierarchy depth messages
+- [TD-5747] Links concepts for link manager
 
 ## [5.7.0] 2023-05-23
 
