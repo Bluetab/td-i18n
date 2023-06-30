@@ -5,6 +5,7 @@
 ## Added
 
 - [TD-5770] Add database TSL configuration
+- [TD-5787] Add Elastic Search Boost option in templates
 
 ## [5.8.0] 2023-06-05
 
