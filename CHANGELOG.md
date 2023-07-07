@@ -1,5 +1,15 @@
 # Changelog
 
+## [5.10.0] 2023-07-06
+
+## Added
+
+- [TD-5593] Add related concept in quality implementations list and implementation download
+
+## Changed
+
+- [TD-5912] `.gitlab-ci.yml` adaptations for develop and main branches
+
 ## [5.9.0] 2023-06-20
 
 ## Added
