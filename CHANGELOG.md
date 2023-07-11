@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.10.1] 2023-07-11
+
+### Added
+
+- [TD-4986] Empty bucket translation
+
 ## [5.10.0] 2023-07-06
 
 ## Added
