@@ -6,6 +6,12 @@
 
 - [TD-5872] Add link to concepts in downloaded files
 
+## [5.10.1] 2023-07-11
+
+### Added
+
+- [TD-4986] Empty bucket translation
+
 ## [5.10.0] 2023-07-06
 
 ### Added
