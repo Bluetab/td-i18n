@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.11.0] 2023-07-24
+
+### Added
+
+- [TD-5872] Add link to concepts in downloaded files
+
 ## [5.10.1] 2023-07-11
 
 ### Added
@@ -8,17 +14,17 @@
 
 ## [5.10.0] 2023-07-06
 
-## Added
+### Added
 
 - [TD-5593] Add related concept in quality implementations list and implementation download
 
-## Changed
+### Changed
 
 - [TD-5912] `.gitlab-ci.yml` adaptations for develop and main branches
 
 ## [5.9.0] 2023-06-20
 
-## Added
+### Added
 
 - [TD-5770] Add database TSL configuration
 - [TD-5787] Add Elastic Search Boost option in templates
