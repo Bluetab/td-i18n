@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-4557] Messages for Qx DataSets
+- [TD-5936] Messages for HasNote column in structure view
 
 ## [5.11.0] 2023-07-24
 
