@@ -31,7 +31,7 @@ defmodule TdI18n.MixProject do
   def application do
     [
       mod: {TdI18n.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :td_cache]
     ]
   end
 
@@ -60,7 +60,7 @@ defmodule TdI18n.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:guardian, "~> 2.0"},
       {:quantum, "~> 3.0"},
-      {:td_cache, git: "https://github.com/Bluetab/td-cache.git", tag: "4.48.0", override: true},
+      {:td_cache, git: "https://github.com/Bluetab/td-cache.git", tag: "5.12.1"},
       {:ex_machina, "~> 2.4", only: :test},
       {:assertions, "~> 0.19", only: :test},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
