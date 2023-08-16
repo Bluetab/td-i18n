@@ -5,6 +5,8 @@ defmodule TdI18n.Locales do
 
   import Ecto.Query
 
+  alias Ecto.Multi
+  alias TdCache.I18nCache
   alias TdI18n.Locales.Locale
   alias TdI18n.Messages.Message
   alias TdI18n.Repo
@@ -37,17 +39,35 @@ defmodule TdI18n.Locales do
     |> Repo.insert()
   end
 
-  def update_locale(%Locale{} = locale, params) do
-    locale
-    |> Repo.preload(:messages)
-    |> Locale.changeset(params)
-    |> Repo.update()
+  def update_locale(%Locale{lang: old_lang} = locale, params) do
+    changeset =
+      locale
+      |> Repo.preload(:messages)
+      |> Locale.changeset(params)
+
+    Multi.new()
+    |> Multi.update(:locale, changeset)
+    |> Multi.run(:delete_old_lang, fn _, _ ->
+      I18nCache.delete(old_lang)
+    end)
+    |> Multi.run(:delete_lang, fn _, %{locale: %{lang: lang}} ->
+      I18nCache.delete(lang)
+    end)
+    |> Multi.run(:cache, fn _, %{locale: %{lang: lang, messages: messages}} ->
+      add_to_cache(lang, messages)
+    end)
+    |> Repo.transaction()
+    |> then(&multi_result(&1))
   end
 
-  def delete_locale(%Locale{} = locale) do
-    locale
-    |> Repo.preload(:messages)
-    |> Repo.delete()
+  def delete_locale(%Locale{lang: lang} = locale) do
+    Multi.new()
+    |> Multi.delete(:locale, Repo.preload(locale, :messages))
+    |> Multi.run(:cache, fn _, _ ->
+      I18nCache.delete(lang)
+    end)
+    |> Repo.transaction()
+    |> then(&multi_result(&1))
   end
 
   def load_from_file!(path) do
@@ -80,9 +100,23 @@ defmodule TdI18n.Locales do
         }
       end)
 
-    case Repo.insert_all(Message, entries, on_conflict: :nothing) do
-      {0, _} -> Logger.info("No new messages for locale '#{lang}'")
-      {count, _} -> Logger.info("Loaded #{count} messages for locale '#{lang}'")
+    Multi.new()
+    |> Multi.insert_all(:messages, Message, entries, on_conflict: :nothing)
+    |> Multi.run(:cache, fn _, _ ->
+      add_to_cache(lang, existing_messages, entries)
+    end)
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{messages: {0, _} = result}} ->
+        Logger.info("No new messages for locale '#{lang}'")
+        {:ok, result}
+
+      {:ok, %{messages: {count, _} = result}} ->
+        Logger.info("Loaded #{count} messages for locale '#{lang}'")
+        {:ok, result}
+
+      {:error, _, error, _} ->
+        {:error, error}
     end
   end
 
@@ -92,4 +126,22 @@ defmodule TdI18n.Locales do
       locale -> Repo.preload(locale, :messages)
     end
   end
+
+  defp add_to_cache(lang, existing_messages, entries \\ [])
+
+  defp add_to_cache(_lang, [], []), do: {:ok, []}
+
+  defp add_to_cache(lang, existing_messages, entries) do
+    existing_messages
+    |> Kernel.++(entries)
+    |> Enum.map(fn message ->
+      {:ok, result} = I18nCache.put(lang, message)
+      result
+    end)
+    |> then(&{:ok, &1})
+  end
+
+  defp multi_result({:ok, %{locale: changeset}}), do: {:ok, changeset}
+
+  defp multi_result({:error, _, error, _}), do: {:error, error}
 end
