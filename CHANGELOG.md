@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.12.0] 2023-08-16
+
+### Added
+
+- [TD-4557] Messages for Qx DataSets
+- [TD-5936] Messages for HasNote column in structure view
+- [TD-5891] I18n cache message support
+
 ## [5.11.0] 2023-07-24
 
 ### Added

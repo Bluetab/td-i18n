@@ -32,7 +32,13 @@ defmodule TdI18n.LocalesTest do
   end
 
   test "update_locale/2 with valid data updates the locale" do
-    locale = insert(:locale)
+    messages =
+      Enum.map(1..5, fn _ ->
+        insert(:message)
+      end)
+
+    locale = insert(:locale, messages: messages)
+
     update_attrs = %{lang: "some updated lang"}
 
     assert {:ok, %Locale{} = locale} = Locales.update_locale(locale, update_attrs)
