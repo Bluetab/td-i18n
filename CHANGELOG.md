@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.13.0] 2023-09-05
+
+### Added
+
+- [TD-5798] Filter related concepts graph by tag messages
+- [TD-5928] Deprecated concepts messages
+
 ## [5.12.0] 2023-08-16
 
 ### Added
