@@ -4383,6 +4383,7 @@
     "structure.navigation.home": "Inicio",
     "structure.navigation.showing": "mostrados de",
     "structure.no_description": "Sin descripción",
+
     "structure.notes.actions.deleted": "Eliminar",
     "structure.notes.actions.deleted.confirmation.content": "¿Estás seguro de que quieres eliminar esta Nota?",
     "structure.notes.actions.deleted.confirmation.header": "Eliminar Nota",
