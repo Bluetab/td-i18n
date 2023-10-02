@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.15.0] 2023-10-02
+
+### Added
+
+- [TD-5947] Messages for Qx DataViews
+
 ## [5.13.0] 2023-09-05
 
 ### Added
