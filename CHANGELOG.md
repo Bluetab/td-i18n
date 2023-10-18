@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.16.0] 2023-10-18
+
+### Added
+
+- [TD-5540] GrantRequest approval bulk with elasticsearch messages
+  
 ## [5.15.0] 2023-10-02
 
 ### Added
