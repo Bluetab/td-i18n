@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-3062] Messages for Templates table and Form
+
 ## [5.17.0] 2023-11-02
 
 ### Added
