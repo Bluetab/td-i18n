@@ -2163,6 +2163,7 @@
     "structures.props.description": "Description",
     "structures.props.domain": "Domain",
     "structures.props.external_id": "External Id",
+    "structures.props.functional_name": "Functional Name",
     "structures.props.group": "Group",
     "structures.props.inserted_at": "Inserted",
     "structures.props.link_to_structure": "Link to structure",
@@ -4536,7 +4537,6 @@
     "structure.navigation.home": "Inicio",
     "structure.navigation.showing": "mostrados de",
     "structure.no_description": "Sin descripción",
-
     "structure.notes.actions.deleted": "Eliminar",
     "structure.notes.actions.deleted.confirmation.content": "¿Estás seguro de que quieres eliminar esta Nota?",
     "structure.notes.actions.deleted.confirmation.header": "Eliminar Nota",
@@ -4794,6 +4794,7 @@
     "structures.props.description": "Descripción",
     "structures.props.domain": "Dominio",
     "structures.props.external_id": "Id Externo",
+    "structures.props.functional_name": "Nombre Funcional",
     "structures.props.group": "Grupo",
     "structures.props.inserted_at": "Insertado",
     "structures.props.link_to_structure": "Link a la estructura",
