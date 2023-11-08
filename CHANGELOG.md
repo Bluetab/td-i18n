@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-3062] Messages for Templates table and Form
+- [TD-5542] Structure Alias Name Selector messages
 
 ## [5.17.0] 2023-11-02
 
