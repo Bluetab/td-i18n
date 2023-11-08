@@ -4,6 +4,7 @@
 
 ### Added
 
+- [TD-4304] Messages for linked structures filter
 - [TD-3062] Messages for Templates table and Form
 - [TD-5542] Structure Alias Name Selector messages
 
