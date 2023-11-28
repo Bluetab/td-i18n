@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.19.0] 2023-11-28
+
+### Added
+
+- [TD-6140] Messages for AI suggestions on StructureNotes
+
 ## [5.18.0] 2023-11-13
 
 ### Added
@@ -7,7 +13,6 @@
 - [TD-4304] Messages for linked structures filter
 - [TD-3062] Messages for Templates table and Form
 - [TD-5542] Structure Alias Name Selector messages
-- [TD-6140] Messages for AI suggestions on StructureNotes
 
 ## [5.17.0] 2023-11-02
 
