@@ -11,6 +11,8 @@ defmodule TdI18n.Locales.Locale do
 
   schema "locales" do
     field :lang, :string
+    field :is_default, :boolean, default: false
+    field :is_required, :boolean, default: false
 
     has_many :messages, Message
 
@@ -19,7 +21,11 @@ defmodule TdI18n.Locales.Locale do
 
   def changeset(locale, attrs) do
     locale
-    |> cast(attrs, [:lang])
+    |> cast(maybe_required(attrs), [:lang, :is_default, :is_required])
     |> validate_required([:lang])
   end
+
+  defp maybe_required(%{"is_default" => true} = attrs), do: Map.put(attrs, "is_required", true)
+
+  defp maybe_required(attrs), do: attrs
 end

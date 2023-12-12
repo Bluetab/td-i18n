@@ -15,7 +15,9 @@ defmodule TdI18nWeb.LocaleControllerTest do
       assert %{
                "id" => ^locale_id,
                "lang" => _,
-               "messages" => [%{"id" => ^id, "definition" => _, "description" => _}]
+               "messages" => [%{"id" => ^id, "definition" => _, "description" => _}],
+               "is_default" => _,
+               "is_required" => _
              } = locale
     end
   end
@@ -38,6 +40,18 @@ defmodule TdI18nWeb.LocaleControllerTest do
                |> json_response(:ok)
 
       assert_maps_equal(data, params, ["lang"])
+    end
+
+    @tag authentication: [role: "admin"]
+    test "renders multiple locale when data is valid", %{conn: conn} do
+      params = ["td", "bt"]
+
+      assert %{"data" => [locale | _]} =
+               conn
+               |> post(Routes.locale_path(conn, :create), locales: params)
+               |> json_response(:created)
+
+      assert %{"id" => _, "is_default" => false, "is_required" => false, "lang" => "td"} = locale
     end
 
     @tag authentication: [role: "admin"]

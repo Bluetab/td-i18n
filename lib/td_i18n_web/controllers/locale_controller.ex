@@ -26,6 +26,15 @@ defmodule TdI18nWeb.LocaleController do
     end
   end
 
+  def create(conn, %{"locales" => locales_params}) do
+    with :ok <- authorize(conn),
+         {:ok, locales} <- Locales.create_locales(locales_params) do
+      conn
+      |> put_status(:created)
+      |> render("index.json", locales: locales)
+    end
+  end
+
   def update(conn, %{"id" => id, "locale" => locale_params}) do
     locale = Locales.get_locale!(id)
 
