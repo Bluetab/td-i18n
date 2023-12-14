@@ -55,6 +55,19 @@ defmodule TdI18n.Locales do
     {:ok, inserted_locales}
   end
 
+  def update_locale(
+        %Locale{lang: lang} = locale,
+        %{"lang" => lang, "is_default" => _, "is_required" => _} = params
+      ) do
+    changeset = Locale.changeset(locale, params)
+
+    Multi.new()
+    |> Multi.run(:maybe_unset_default_locale, fn _, _ -> maybe_unset_default_locale(params) end)
+    |> Multi.update(:locale, changeset)
+    |> Repo.transaction()
+    |> then(&multi_result(&1))
+  end
+
   def update_locale(%Locale{lang: old_lang} = locale, params) do
     changeset =
       locale
