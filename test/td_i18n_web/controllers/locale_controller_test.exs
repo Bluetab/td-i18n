@@ -2,12 +2,12 @@ defmodule TdI18nWeb.LocaleControllerTest do
   use TdI18nWeb.ConnCase
 
   describe "GET /api/locales" do
-    test "lists all locales", %{conn: conn} do
-      %{locale_id: locale_id, id: id} = insert(:message)
+    test "lists all locales without messages", %{conn: conn} do
+      %{locale_id: locale_id} = insert(:message)
 
       assert %{"data" => data} =
                conn
-               |> get(Routes.locale_path(conn, :index))
+               |> get(Routes.locale_path(conn, :index), %{"includeMessages" => "false"})
                |> json_response(:ok)
 
       assert [locale] = data
@@ -15,10 +15,11 @@ defmodule TdI18nWeb.LocaleControllerTest do
       assert %{
                "id" => ^locale_id,
                "lang" => _,
-               "messages" => [%{"id" => ^id, "definition" => _, "description" => _}],
                "is_default" => _,
                "is_required" => _
              } = locale
+
+      refute Map.has_key?(locale, "messages")
     end
   end
 

@@ -13,9 +13,11 @@ defmodule TdI18n.Locales do
 
   require Logger
 
-  def list_locales do
+  def list_locales(opts \\ [preload: :messages]) do
+    preloads = Keyword.get(opts, :preload, [])
+
     Locale
-    |> preload(:messages)
+    |> preload(^preloads)
     |> Repo.all()
   end
 
@@ -96,10 +98,12 @@ defmodule TdI18n.Locales do
     end
   end
 
-  defp maybe_unset_default_locale(%{"is_default" => true}),
-    do: {:ok, Repo.update_all(Locale, set: [is_default: false])}
+  defp maybe_unset_default_locale(%{"is_default" => true}) do
+    query = where(Locale, is_default: true)
+    {:ok, Repo.update_all(query, set: [is_default: false])}
+  end
 
-  defp maybe_unset_default_locale(params), do: {:ok, params}
+  defp maybe_unset_default_locale(_params), do: {:ok, []}
 
   defp do_load_locale!({lang, messages}) do
     ts = DateTime.utc_now()
