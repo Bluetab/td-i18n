@@ -6,8 +6,12 @@ defmodule TdI18nWeb.LocaleController do
 
   action_fallback TdI18nWeb.FallbackController
 
-  def index(conn, _params) do
-    locales = Locales.list_locales()
+  def index(conn, params) do
+    locales =
+      params
+      |> maybe_add_preloads()
+      |> Locales.list_locales()
+
     render(conn, "index.json", locales: locales)
   end
 
@@ -52,4 +56,11 @@ defmodule TdI18nWeb.LocaleController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  defp maybe_add_preloads(%{"includeMessages" => includeMessages}) do
+    maybe_add_preloads(String.to_atom(includeMessages))
+  end
+
+  defp maybe_add_preloads(false), do: []
+  defp maybe_add_preloads(_), do: [preload: :messages]
 end
