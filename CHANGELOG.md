@@ -6,6 +6,7 @@
 
 - [TD-5505] Grant removal request workflow
 - [TD-6167] Multi language administrator
+- [TD-6152] Messages for QX executions
 
 ## [5.19.0] 2023-11-28
 
