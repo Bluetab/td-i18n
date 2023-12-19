@@ -13,9 +13,11 @@ defmodule TdI18n.Locales do
 
   require Logger
 
-  def list_locales do
+  def list_locales(opts \\ [preload: :messages]) do
+    preloads = Keyword.get(opts, :preload, [])
+
     Locale
-    |> preload(:messages)
+    |> preload(^preloads)
     |> Repo.all()
   end
 
@@ -34,9 +36,36 @@ defmodule TdI18n.Locales do
   def get_locale(id), do: Repo.get(Locale, id)
 
   def create_locale(params \\ %{}) do
-    %Locale{messages: []}
-    |> Locale.changeset(params)
-    |> Repo.insert()
+    changeset = Locale.changeset(%Locale{messages: []}, params)
+
+    Multi.new()
+    |> Multi.run(:maybe_unset_default_locale, fn _, _ -> maybe_unset_default_locale(params) end)
+    |> Multi.insert(:locale, changeset)
+    |> Repo.transaction()
+    |> then(&multi_result(&1))
+  end
+
+  def create_locales(new_locales \\ []) do
+    inserted_locales =
+      Enum.map(new_locales, fn new_locale ->
+        {:ok, inserted_locale} = create_locale(%{lang: new_locale})
+        inserted_locale
+      end)
+
+    {:ok, inserted_locales}
+  end
+
+  def update_locale(
+        %Locale{lang: lang} = locale,
+        %{"lang" => lang, "is_default" => _, "is_required" => _} = params
+      ) do
+    changeset = Locale.changeset(locale, params)
+
+    Multi.new()
+    |> Multi.run(:maybe_unset_default_locale, fn _, _ -> maybe_unset_default_locale(params) end)
+    |> Multi.update(:locale, changeset)
+    |> Repo.transaction()
+    |> then(&multi_result(&1))
   end
 
   def update_locale(%Locale{lang: old_lang} = locale, params) do
@@ -46,6 +75,7 @@ defmodule TdI18n.Locales do
       |> Locale.changeset(params)
 
     Multi.new()
+    |> Multi.run(:maybe_unset_default_locale, fn _, _ -> maybe_unset_default_locale(params) end)
     |> Multi.update(:locale, changeset)
     |> Multi.run(:delete_old_lang, fn _, _ ->
       I18nCache.delete(old_lang)
@@ -80,6 +110,13 @@ defmodule TdI18n.Locales do
       Logger.warn("File #{path} does not exist")
     end
   end
+
+  defp maybe_unset_default_locale(%{"is_default" => true}) do
+    query = where(Locale, is_default: true)
+    {:ok, Repo.update_all(query, set: [is_default: false])}
+  end
+
+  defp maybe_unset_default_locale(_params), do: {:ok, []}
 
   defp do_load_locale!({lang, messages}) do
     ts = DateTime.utc_now()

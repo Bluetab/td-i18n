@@ -18,6 +18,7 @@ RUN apk --no-cache add ncurses-libs openssl bash ca-certificates libstdc++ && \
     tar -xzf *.tar.gz && \
     rm *.tar.gz && \
     ln -s lib/td_i18n*/priv/repo/messages.json && \  
+    ln -s lib/td_i18n*/priv/repo/all_locales.json && \  
     adduser -h /app -D app && \
     chown -R app: /app
 

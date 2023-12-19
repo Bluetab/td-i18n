@@ -1,0 +1,17 @@
+[
+  {
+    "local": "Español",
+    "name": "Spanish",
+    "code": "es"
+  },
+  {
+    "local": "English",
+    "name": "English",
+    "code": "en"
+  },
+  {
+    "local": "Trudish",
+    "name": "Trudat",
+    "code": "td"
+  }
+]
