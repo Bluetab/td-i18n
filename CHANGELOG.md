@@ -13,6 +13,10 @@
 
 - [TD-6167] Schedule Job to load locales in prod config
 
+### Fixed
+
+- [TD-6167] Schedule Job to load locales in prod config
+
 ## [5.20.0] 2023-12-19
 
 ### Added
