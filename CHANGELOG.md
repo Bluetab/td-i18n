@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-6221] Messages for AI management
+- [TD-6195] Messages for AI Suggestions in Business Concepts
 
 ### Fixed
 
