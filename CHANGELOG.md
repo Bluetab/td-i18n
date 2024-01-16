@@ -4,6 +4,7 @@
 
 ### Added
 
+- [TD-6205] Conpets upload messages
 - [TD-6221] Messages for AI management
 - [TD-6195] Messages for AI Suggestions in Business Concepts
 - [TD-6336] Get test-truedat-eks config on deploy stage
