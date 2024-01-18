@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.0.0] 2024-01-17
+
+### Added
+
+- [TD-6205] Conpets upload messages
+- [TD-6221] Messages for AI management
+- [TD-6195] Messages for AI Suggestions in Business Concepts
+- [TD-6336] Get test-truedat-eks config on deploy stage
+
+### Fixed
+
+- [TD-6167] Schedule Job to load locales in prod config
+
 ## [5.20.0] 2023-12-19
 
 ### Added
