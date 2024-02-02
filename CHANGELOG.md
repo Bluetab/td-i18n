@@ -4,6 +4,7 @@
 
 ### Added
 
+- [TD-6339] Messages for search refactor
 - [TD-6306] Empty catalog view message
 
 ## [6.0.0] 2024-01-17
