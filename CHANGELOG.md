@@ -7,6 +7,10 @@
 - [TD-6339] Messages for search refactor
 - [TD-6306] Empty catalog view message
 
+### Changed
+
+- [TD-6374] Refactor locales to include lang manager
+
 ## [6.0.0] 2024-01-17
 
 ### Added
