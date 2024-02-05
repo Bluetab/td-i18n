@@ -763,7 +763,7 @@
         "i18n.messages.locale.es": "Spanish",
         "i18n.messages.locale.en": "English",
         "i18n.messages.locale.add_lang": "Add language",
-        "i18n.messages.locale.default": "Optional",
+        "i18n.messages.locale.default": "Default",
         "i18n.messages.locale.manage": "Manage",
         "i18n.messages.locale.required": "Required",
         "i18n.messages.locale.lang_select": "Select language",
