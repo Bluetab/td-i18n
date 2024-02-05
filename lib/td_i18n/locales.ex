@@ -48,7 +48,7 @@ defmodule TdI18n.Locales do
   def create_locales(new_locales \\ []) do
     inserted_locales =
       Enum.map(new_locales, fn new_locale ->
-        {:ok, inserted_locale} = create_locale(%{lang: new_locale})
+        {:ok, inserted_locale} = create_locale(new_locale)
         inserted_locale
       end)
 
@@ -56,35 +56,16 @@ defmodule TdI18n.Locales do
   end
 
   def update_locale(
-        %Locale{lang: lang} = locale,
-        %{"lang" => lang, "is_default" => _, "is_required" => _} = params
+        locale,
+        params
       ) do
     changeset = Locale.changeset(locale, params)
 
     Multi.new()
     |> Multi.run(:maybe_unset_default_locale, fn _, _ -> maybe_unset_default_locale(params) end)
     |> Multi.update(:locale, changeset)
-    |> Repo.transaction()
-    |> then(&multi_result(&1))
-  end
-
-  def update_locale(%Locale{lang: old_lang} = locale, params) do
-    changeset =
-      locale
-      |> Repo.preload(:messages)
-      |> Locale.changeset(params)
-
-    Multi.new()
-    |> Multi.run(:maybe_unset_default_locale, fn _, _ -> maybe_unset_default_locale(params) end)
-    |> Multi.update(:locale, changeset)
-    |> Multi.run(:delete_old_lang, fn _, _ ->
-      I18nCache.delete(old_lang)
-    end)
-    |> Multi.run(:delete_lang, fn _, %{locale: %{lang: lang}} ->
-      I18nCache.delete(lang)
-    end)
-    |> Multi.run(:cache, fn _, %{locale: %{lang: lang, messages: messages}} ->
-      add_to_cache(lang, messages)
+    |> Multi.run(:copy_messages_from_default, fn _, multi ->
+      copy_messages_from_default(multi, params)
     end)
     |> Repo.transaction()
     |> then(&multi_result(&1))
@@ -100,12 +81,24 @@ defmodule TdI18n.Locales do
     |> then(&multi_result(&1))
   end
 
-  def load_from_file!(path) do
+  def load_messages_from_file!(path) do
     if File.regular?(path) do
       path
       |> File.read!()
       |> Jason.decode!()
-      |> Enum.each(&do_load_locale!/1)
+      |> populate_enabled_locales()
+      |> Enum.each(&do_load_locale_message!/1)
+    else
+      Logger.warn("File #{path} does not exist")
+    end
+  end
+
+  def load_locales_from_file!(path) do
+    if File.regular?(path) do
+      path
+      |> File.read!()
+      |> Jason.decode!()
+      |> do_load_locales()
     else
       Logger.warn("File #{path} does not exist")
     end
@@ -118,7 +111,72 @@ defmodule TdI18n.Locales do
 
   defp maybe_unset_default_locale(_params), do: {:ok, []}
 
-  defp do_load_locale!({lang, messages}) do
+  defp copy_messages_from_default(%{locale: %{lang: updated_lang_lang}}, %{"is_enabled" => true}) do
+    messages =
+      Locale
+      |> Repo.get_by(is_default: true)
+      |> Repo.preload(:messages)
+      |> case do
+        nil ->
+          Locale
+          |> limit(1)
+          |> order_by([l], asc: l.id)
+          |> Repo.one()
+          |> Repo.preload(:messages)
+
+        default_lang ->
+          default_lang
+      end
+      |> Map.get(:messages)
+      |> Enum.map(fn %{message_id: message_id, definition: message_definition} ->
+        {message_id, message_definition}
+      end)
+
+    do_load_locale_message!({updated_lang_lang, messages})
+  end
+
+  defp copy_messages_from_default(_updated_lang, _params), do: {:ok, []}
+
+  defp populate_enabled_locales(langs_messages) do
+    default_lang =
+      Locale
+      |> Repo.get_by(is_default: true)
+      |> case do
+        nil ->
+          Locale
+          |> limit(1)
+          |> order_by([l], asc: l.id)
+          |> Repo.one()
+          |> Map.get(:lang)
+
+        %{lang: lang} ->
+          lang
+      end
+
+    default_lang =
+      case Map.has_key?(langs_messages, default_lang) do
+        true ->
+          default_lang
+
+        false ->
+          langs_messages
+          |> Map.keys()
+          |> hd()
+      end
+
+    messages_to_add = Map.get(langs_messages, default_lang)
+
+    Locale
+    |> where(is_enabled: true)
+    |> select([s], s.lang)
+    |> Repo.all()
+    |> Enum.filter(fn lang -> !Enum.member?(Map.keys(langs_messages), lang) end)
+    |> Enum.reduce(langs_messages, fn lang, langs_messages ->
+      Map.put(langs_messages, lang, messages_to_add)
+    end)
+  end
+
+  defp do_load_locale_message!({lang, messages}) do
     ts = DateTime.utc_now()
     %{messages: existing_messages, id: locale_id} = get_or_insert!(lang)
 
@@ -157,6 +215,33 @@ defmodule TdI18n.Locales do
     end
   end
 
+  defp do_load_locales(locales) do
+    ts = DateTime.utc_now()
+
+    entries =
+      Enum.map(locales, fn %{"lang" => lang, "name" => name, "local_name" => local_name} ->
+        %{
+          lang: lang,
+          name: name,
+          local_name: local_name,
+          inserted_at: ts,
+          updated_at: ts
+        }
+      end)
+
+    Locale
+    |> Repo.insert_all(entries, on_conflict: :nothing)
+    |> case do
+      {0, _} = result ->
+        Logger.info("No new locales")
+        {:ok, result}
+
+      {count, _} = result ->
+        Logger.info("Loaded #{count} new locales")
+        {:ok, result}
+    end
+  end
+
   defp get_or_insert!(lang) do
     case Repo.get_by(Locale, lang: lang) do
       nil -> Repo.insert!(%Locale{lang: lang, messages: []})
@@ -164,7 +249,7 @@ defmodule TdI18n.Locales do
     end
   end
 
-  defp add_to_cache(lang, existing_messages, entries \\ [])
+  defp add_to_cache(lang, existing_messages, entries)
 
   defp add_to_cache(_lang, [], []), do: {:ok, []}
 
