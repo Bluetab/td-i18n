@@ -5,13 +5,17 @@ defmodule TdI18n.Factory do
 
   use ExMachina.Ecto, repo: TdI18n.Repo
 
-  alias TdI18n.AllLocales.AllLocale
   alias TdI18n.Locales.Locale
   alias TdI18n.Messages.Message
 
   def locale_factory do
     %Locale{
       lang: sequence("locale_lang"),
+      is_default: false,
+      is_required: false,
+      is_enabled: false,
+      name: sequence("locale_name"),
+      local_name: sequence("locale_local_name"),
       messages: []
     }
   end
@@ -25,14 +29,6 @@ defmodule TdI18n.Factory do
       description: sequence("message_description")
     }
     |> merge_attributes(attrs)
-  end
-
-  def all_locale_factory do
-    %AllLocale{
-      code: "td",
-      name: "Truedat",
-      local: "Trudish"
-    }
   end
 
   def user_factory do

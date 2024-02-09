@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.1.0] 2024-02-08
+
+### Added
+
+- [TD-6339] Messages for search refactor
+- [TD-6306] Empty catalog view message
+
+### Changed
+
+- [TD-6374] Refactor locales to include lang manager
+
 ## [6.0.0] 2024-01-17
 
 ### Added
@@ -8,6 +19,10 @@
 - [TD-6221] Messages for AI management
 - [TD-6195] Messages for AI Suggestions in Business Concepts
 - [TD-6336] Get test-truedat-eks config on deploy stage
+
+### Fixed
+
+- [TD-6167] Schedule Job to load locales in prod config
 
 ### Fixed
 

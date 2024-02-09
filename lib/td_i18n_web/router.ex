@@ -12,8 +12,6 @@ defmodule TdI18nWeb.Router do
   scope "/api", TdI18nWeb do
     pipe_through [:api, :api_auth]
 
-    get "/locales/all_locales", AllLocaleController, :index
-
     resources "/locales", LocaleController, only: [:create, :update, :delete] do
       resources "/messages", LocaleMessageController,
         only: [:create],

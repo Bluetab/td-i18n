@@ -5,18 +5,19 @@ defmodule TdI18nWeb.LocaleControllerTest do
     test "lists all locales without messages", %{conn: conn} do
       %{locale_id: locale_id} = insert(:message)
 
-      assert %{"data" => data} =
+      assert %{"data" => [locale]} =
                conn
                |> get(Routes.locale_path(conn, :index), %{"includeMessages" => "false"})
                |> json_response(:ok)
-
-      assert [locale] = data
 
       assert %{
                "id" => ^locale_id,
                "lang" => _,
                "is_default" => _,
-               "is_required" => _
+               "is_required" => _,
+               "is_enabled" => _,
+               "name" => _,
+               "local_name" => _
              } = locale
 
       refute Map.has_key?(locale, "messages")
@@ -45,26 +46,41 @@ defmodule TdI18nWeb.LocaleControllerTest do
 
     @tag authentication: [role: "admin"]
     test "renders multiple locale when data is valid", %{conn: conn} do
-      params = ["td", "bt"]
+      params = [
+        %{"lang" => "td", "name" => "Truedat", "local_name" => "Truedish"},
+        %{"lang" => "bt", "name" => "Bluetab", "local_name" => "Bluetarian"}
+      ]
 
       assert %{"data" => [locale | _]} =
                conn
                |> post(Routes.locale_path(conn, :create), locales: params)
                |> json_response(:created)
 
-      assert %{"id" => _, "is_default" => false, "is_required" => false, "lang" => "td"} = locale
+      assert %{
+               "id" => _,
+               "is_default" => false,
+               "is_required" => false,
+               "lang" => "td",
+               "is_enabled" => false,
+               "name" => "Truedat",
+               "local_name" => "Truedish"
+             } = locale
     end
 
     @tag authentication: [role: "admin"]
     test "renders errors when data is invalid", %{conn: conn} do
-      params = %{"lang" => nil}
+      params = %{"lang" => nil, "name" => nil, "local_name" => nil}
 
       assert %{"errors" => errors} =
                conn
                |> post(Routes.locale_path(conn, :create), locale: params)
                |> json_response(:unprocessable_entity)
 
-      assert errors == %{"lang" => ["can't be blank"]}
+      assert errors == %{
+               "lang" => ["can't be blank"],
+               "name" => ["can't be blank"],
+               "local_name" => ["can't be blank"]
+             }
     end
 
     @tag authentication: [role: "user"]
@@ -99,19 +115,41 @@ defmodule TdI18nWeb.LocaleControllerTest do
                |> get(Routes.locale_path(conn, :show, id))
                |> json_response(:ok)
 
-      assert_maps_equal(data, params, ["lang"])
+      assert_maps_equal(data, params, ["lang", "name", "local_name"])
+    end
+
+    @tag authentication: [role: "admin"]
+    test "update is_enabled locale", %{
+      conn: conn,
+      locale: %{id: id, lang: lang} = locale
+    } do
+      assert %{"data" => data} =
+               conn
+               |> patch(Routes.locale_path(conn, :update, locale),
+                 locale: %{
+                   "is_enabled" => true,
+                   "lang" => lang
+                 }
+               )
+               |> json_response(:ok)
+
+      assert %{"id" => ^id, "is_enabled" => true} = data
     end
 
     @tag authentication: [role: "admin"]
     test "renders errors when data is invalid", %{conn: conn, locale: locale} do
-      params = %{"lang" => nil}
+      params = %{"lang" => nil, "name" => nil, "local_name" => nil}
 
       assert %{"errors" => errors} =
                conn
                |> patch(Routes.locale_path(conn, :update, locale), locale: params)
                |> json_response(:unprocessable_entity)
 
-      assert errors == %{"lang" => ["can't be blank"]}
+      assert errors == %{
+               "lang" => ["can't be blank"],
+               "name" => ["can't be blank"],
+               "local_name" => ["can't be blank"]
+             }
     end
 
     @tag authentication: [role: "user"]
