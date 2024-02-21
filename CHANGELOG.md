@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- [TD-6243] Support for deleting Elasticsearch indexes
+
 ### Fixed
 
 - [TD-6425] Ensure SSL if configured for release migration
@@ -25,6 +29,7 @@
 - [TD-6221] Messages for AI management
 - [TD-6195] Messages for AI Suggestions in Business Concepts
 - [TD-6336] Get test-truedat-eks config on deploy stage
+- [TD-6243] Messages for deleting Elasticsearch indexes
 
 ### Fixed
 
