@@ -48,13 +48,8 @@ defmodule TdI18nWeb.LocaleController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    locale = Locales.get_locale!(id)
-
-    with :ok <- authorize(conn),
-         {:ok, %Locale{}} <- Locales.delete_locale(locale) do
-      send_resp(conn, :no_content, "")
-    end
+  def delete(conn, _) do
+    send_resp(conn, :method_not_allowed, "")
   end
 
   defp maybe_add_preloads(%{"includeMessages" => includeMessages}) do

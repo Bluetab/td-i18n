@@ -21,19 +21,35 @@ defmodule TdI18n.Locales do
     |> Repo.all()
   end
 
-  def get_by!(clauses) do
+  def get_by!(clauses, opts \\ [preload: :messages]) do
+    preloads = Keyword.get(opts, :preload, [])
+
     Locale
+    |> preload(^preloads)
     |> Repo.get_by!(clauses)
-    |> Repo.preload(:messages)
   end
 
-  def get_locale!(id) do
+  def get_locale!(id, opts \\ [preload: :messages]) do
+    preloads = Keyword.get(opts, :preload, [])
+
     Locale
+    |> preload(^preloads)
     |> Repo.get!(id)
-    |> Repo.preload(:messages)
   end
 
   def get_locale(id), do: Repo.get(Locale, id)
+
+  def get_default_locale do
+    Locale
+    |> where([l], l.is_default == true)
+    |> Repo.one()
+  end
+
+  def get_required_locales do
+    Locale
+    |> where([l], l.is_required == true and l.is_default == false)
+    |> Repo.all()
+  end
 
   def create_locale(params \\ %{}) do
     changeset = Locale.changeset(%Locale{messages: []}, params)
@@ -42,7 +58,8 @@ defmodule TdI18n.Locales do
     |> Multi.run(:maybe_unset_default_locale, fn _, _ -> maybe_unset_default_locale(params) end)
     |> Multi.insert(:locale, changeset)
     |> Repo.transaction()
-    |> then(&multi_result(&1))
+    |> multi_result()
+    |> maybe_refresh_cache()
   end
 
   def create_locales(new_locales \\ []) do
@@ -68,7 +85,8 @@ defmodule TdI18n.Locales do
       copy_messages_from_default(multi, params)
     end)
     |> Repo.transaction()
-    |> then(&multi_result(&1))
+    |> multi_result()
+    |> maybe_refresh_cache()
   end
 
   def delete_locale(%Locale{lang: lang} = locale) do
@@ -78,7 +96,7 @@ defmodule TdI18n.Locales do
       I18nCache.delete(lang)
     end)
     |> Repo.transaction()
-    |> then(&multi_result(&1))
+    |> multi_result()
   end
 
   def load_messages_from_file!(path) do
@@ -105,8 +123,12 @@ defmodule TdI18n.Locales do
   end
 
   defp maybe_unset_default_locale(%{"is_default" => true}) do
-    query = where(Locale, is_default: true)
-    {:ok, Repo.update_all(query, set: [is_default: false])}
+    result =
+      Locale
+      |> where(is_default: true)
+      |> Repo.update_all(set: [is_default: false])
+
+    {:ok, result}
   end
 
   defp maybe_unset_default_locale(_params), do: {:ok, []}
@@ -262,6 +284,27 @@ defmodule TdI18n.Locales do
     end)
     |> then(&{:ok, &1})
   end
+
+  defp maybe_refresh_cache({:ok, %{lang: lang, is_default: true}} = result) do
+    ## modificar los tests en los que se crean o actualizan los
+    {:ok, "OK"} = I18nCache.put_default_locale(lang)
+    result
+  end
+
+  defp maybe_refresh_cache({:ok, _} = result) do
+    locales = get_required_locales()
+
+    {:ok, _} =
+      locales
+      |> Enum.reduce([], fn %{lang: lang}, acc ->
+        [lang | acc]
+      end)
+      |> I18nCache.put_required_locales()
+
+    result
+  end
+
+  defp maybe_refresh_cache(result), do: result
 
   defp multi_result({:ok, %{locale: changeset}}), do: {:ok, changeset}
 
