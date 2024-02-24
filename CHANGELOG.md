@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-6243] Support for deleting Elasticsearch indexes
+- [TD-6258] Support of locales in cache
 
 ### Fixed
 

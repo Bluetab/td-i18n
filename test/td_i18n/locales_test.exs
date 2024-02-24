@@ -1,45 +1,69 @@
 defmodule TdI18n.LocalesTest do
   use TdI18n.DataCase
 
+  import TdI18n.TestOperators
+
+  alias TdCache.I18nCache
   alias TdI18n.Locales
   alias TdI18n.Locales.Locale
   alias TdI18n.Repo
 
-  test "list_locales/0 returns all locales" do
-    locale = insert(:locale)
-    assert Locales.list_locales() == [locale]
+  setup do
+    on_exit(fn -> TdCache.Redix.del!("i18n:locales:*") end)
   end
 
-  test "get_locale!/1 returns the locale with given id" do
-    locale = insert(:locale)
-    assert Locales.get_locale!(locale.id) == locale
-  end
+  describe "get and lis locales" do
+    test "list_locales/0 returns all locales" do
+      locale = insert(:locale)
+      assert Locales.list_locales() == [locale]
+    end
 
-  test "get_by!/1 returns the locale with given lang" do
-    locale = insert(:locale)
-    assert Locales.get_by!(lang: locale.lang) == locale
+    test "get_locale!/1 returns the locale with given id" do
+      locale = insert(:locale)
+      assert Locales.get_locale!(locale.id) == locale
+    end
+
+    test "get_by!/1 returns the locale with given lang" do
+      locale = insert(:locale)
+      assert Locales.get_by!(lang: locale.lang) == locale
+    end
+
+    test "get_default_locale/0 return default locale" do
+      insert(:locale)
+      assert is_nil(Locales.get_default_locale())
+
+      %{id: default_locale_id} = insert(:locale, is_default: true)
+
+      assert %{id: ^default_locale_id} = Locales.get_default_locale()
+    end
+
+    test "get_required_locales/0 return a required locales without default locale" do
+      insert(:locale, is_required: true, is_default: true)
+      assert [] == Locales.get_required_locales()
+      %{id: required_id_1} = insert(:locale, is_required: true)
+
+      %{id: required_id_2} = insert(:locale, is_required: true)
+
+      [%{id: response_id_1}, %{id: response_id_2}] = Locales.get_required_locales()
+
+      assert [required_id_1, required_id_2] ||| [response_id_1, response_id_2]
+    end
   end
 
   describe "create_locale/1" do
-    test "with valid data creates a locale" do
-      valid_attrs = %{
-        lang: "some lang",
-        is_required: true,
-        is_default: true,
-        is_enabled: true,
-        name: "Some Name",
-        local_name: "Some LocalName"
-      }
+    @valid_attrs %{
+      lang: "some lang",
+      is_required: true,
+      is_default: true,
+      is_enabled: true,
+      name: "Some Name",
+      local_name: "Some LocalName"
+    }
 
-      assert {:ok,
-              %Locale{
-                lang: "some lang",
-                is_required: true,
-                is_default: true,
-                is_enabled: true,
-                name: "Some Name",
-                local_name: "Some LocalName"
-              }} = Locales.create_locale(valid_attrs)
+    test "with valid data creates a locale" do
+      assert {:ok, locale} = Locales.create_locale(@valid_attrs)
+
+      assert_maps_equal(locale, @valid_attrs, [:name, :local_name])
     end
 
     test "with required data creates a locale with default values" do
@@ -130,6 +154,43 @@ defmodule TdI18n.LocalesTest do
                  "local_name" => "XenoXtreamer"
                })
     end
+
+    test "add to cache the locale when is created if is_default equal true" do
+      assert {:ok, %Locale{lang: lang}} = Locales.create_locale(@valid_attrs)
+
+      assert {:ok, ^lang} = I18nCache.get_default_locale()
+    end
+
+    test "no add to cache the locale when is created if is_default equal false" do
+      {:ok, _} = I18nCache.put_default_locale("foo")
+
+      assert {:ok, _} =
+               @valid_attrs
+               |> Map.put(:is_default, false)
+               |> Map.put(:is_enabled, false)
+               |> Locales.create_locale()
+
+      assert {:ok, "foo"} = I18nCache.get_default_locale()
+    end
+
+    test "add to cache the locale when is created if is_required equal true" do
+      assert {:ok, %Locale{lang: lang}} =
+               @valid_attrs
+               |> Map.put(:is_default, false)
+               |> Locales.create_locale()
+
+      assert {:ok, [^lang]} = I18nCache.get_required_locales()
+
+      assert {:ok, %Locale{lang: new_lang}} =
+               @valid_attrs
+               |> Map.put(:lang, "foo")
+               |> Map.put(:is_default, false)
+               |> Locales.create_locale()
+
+      assert {:ok, list_locales} = I18nCache.get_required_locales()
+
+      assert [new_lang, lang] ||| list_locales
+    end
   end
 
   describe "update_locale/2" do
@@ -150,15 +211,9 @@ defmodule TdI18n.LocalesTest do
         local_name: "Some Updated LocalName"
       }
 
-      assert {:ok,
-              %Locale{
-                lang: "some updated lang",
-                is_required: true,
-                is_default: true,
-                is_enabled: true,
-                name: "Some Updated Name",
-                local_name: "Some Updated LocalName"
-              }} = Locales.update_locale(locale, update_attrs)
+      assert {:ok, locale} = Locales.update_locale(locale, update_attrs)
+
+      assert_maps_equal(locale, update_attrs, [:lang, :name, :local_name])
     end
 
     test "with invalid data returns error changeset" do
@@ -195,14 +250,7 @@ defmodule TdI18n.LocalesTest do
 
       {:ok, locale} = Locales.update_locale(locale, valid_attrs)
 
-      assert %Locale{
-               lang: "some updated lang",
-               is_required: false,
-               is_default: false,
-               is_enabled: false,
-               name: "Some Updated Name",
-               local_name: "Some Updated LocalName"
-             } = locale
+      assert_maps_equal(locale, valid_attrs, [:lang, :name, :local_name])
     end
 
     test "sets only 1 default" do
@@ -256,6 +304,24 @@ defmodule TdI18n.LocalesTest do
 
       assert {:ok, %{is_enabled: false}} =
                Locales.update_locale(locale, %{"lang" => lang, "is_enabled" => false})
+    end
+
+    test "add to cache the locale if is_default equal true" do
+      locale = insert(:locale, is_default: false, is_required: false)
+
+      update_attrs = %{is_default: true}
+
+      assert {:ok, %{lang: lang}} = Locales.update_locale(locale, update_attrs)
+      assert {:ok, ^lang} = I18nCache.get_default_locale()
+    end
+
+    test "add to cache the locale if is_required equal true" do
+      locale = insert(:locale, is_default: false, is_required: false)
+
+      update_attrs = %{is_required: true}
+
+      assert {:ok, %{lang: lang}} = Locales.update_locale(locale, update_attrs)
+      assert {:ok, [^lang]} = I18nCache.get_required_locales()
     end
   end
 

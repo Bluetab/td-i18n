@@ -1,6 +1,12 @@
 defmodule TdI18nWeb.LocaleControllerTest do
   use TdI18nWeb.ConnCase
 
+  alias TdCache.I18nCache
+
+  setup do
+    on_exit(fn -> TdCache.Redix.del!("i18n:locales:*") end)
+  end
+
   describe "GET /api/locales" do
     test "lists all locales without messages", %{conn: conn} do
       %{locale_id: locale_id} = insert(:message)
@@ -137,6 +143,49 @@ defmodule TdI18nWeb.LocaleControllerTest do
     end
 
     @tag authentication: [role: "admin"]
+    test "add to cache if is_default locale", %{
+      conn: conn
+    } do
+      %{lang: lang, id: id} =
+        locale = insert(:locale, is_default: false, is_required: false, lang: "foo")
+
+      assert %{"data" => data} =
+               conn
+               |> patch(Routes.locale_path(conn, :update, locale),
+                 locale: %{
+                   "is_default" => true,
+                   "lang" => lang
+                 }
+               )
+               |> json_response(:ok)
+
+      assert %{"id" => ^id, "lang" => ^lang, "is_default" => true} = data
+      assert {:ok, ^lang} = I18nCache.get_default_locale()
+    end
+
+    @tag authentication: [role: "admin"]
+    test "add to cache if is_required locale", %{
+      conn: conn
+    } do
+      %{lang: lang, id: id} =
+        locale = insert(:locale, is_default: false, is_required: false, lang: "foo")
+
+      assert %{"data" => data} =
+               conn
+               |> patch(Routes.locale_path(conn, :update, locale),
+                 locale: %{
+                   "is_required" => true,
+                   "lang" => lang
+                 }
+               )
+               |> json_response(:ok)
+
+      assert %{"id" => ^id, "lang" => lang, "is_required" => true} = data
+
+      assert {:ok, [^lang]} = I18nCache.get_required_locales()
+    end
+
+    @tag authentication: [role: "admin"]
     test "renders errors when data is invalid", %{conn: conn, locale: locale} do
       params = %{"lang" => nil, "name" => nil, "local_name" => nil}
 
@@ -167,24 +216,17 @@ defmodule TdI18nWeb.LocaleControllerTest do
     setup :create_locale
 
     @tag authentication: [role: "admin"]
-    test "deletes chosen locale", %{conn: conn, locale: locale} do
+    test "responds method_not_allowed for admin", %{conn: conn, locale: locale} do
       assert conn
              |> delete(Routes.locale_path(conn, :delete, locale))
-             |> response(:no_content)
-
-      assert_error_sent :not_found, fn ->
-        get(conn, Routes.locale_path(conn, :show, locale))
-      end
+             |> response(:method_not_allowed)
     end
 
     @tag authentication: [role: "user"]
-    test "responds forbidden when user is not admin", %{conn: conn, locale: locale} do
-      assert %{"errors" => errors} =
-               conn
-               |> delete(Routes.locale_path(conn, :delete, locale))
-               |> json_response(:forbidden)
-
-      assert errors == %{"detail" => "Forbidden"}
+    test "responds method_not_allowed when user is not admin", %{conn: conn, locale: locale} do
+      assert conn
+             |> delete(Routes.locale_path(conn, :delete, locale))
+             |> response(:method_not_allowed)
     end
   end
 
