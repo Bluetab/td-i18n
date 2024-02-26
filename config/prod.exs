@@ -28,5 +28,10 @@ config :td_i18n, TdI18n.Scheduler,
       schedule: "@reboot",
       task: {TdI18n.Locales, :load_locales_from_file!, ["/app/locales.json"]},
       run_strategy: Quantum.RunStrategy.Local
+    ],
+    [
+      schedule: "@reboot",
+      task: {TdI18n.Cache.LocaleLoader, :reload, []},
+      run_strategy: Quantum.RunStrategy.Local
     ]
   ]

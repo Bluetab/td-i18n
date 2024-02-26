@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.2.0] 2024-02-26
+
+### Added
+
+- [TD-6243] Support for deleting Elasticsearch indexes
+- [TD-6258] Support of locales in cache
+- [TD-6223] Allow custom configuration of global search page
+
+### Fixed
+
+- [TD-6425] Ensure SSL if configured for release migration
+
 ## [6.1.0] 2024-02-08
 
 ### Added
@@ -19,10 +31,7 @@
 - [TD-6221] Messages for AI management
 - [TD-6195] Messages for AI Suggestions in Business Concepts
 - [TD-6336] Get test-truedat-eks config on deploy stage
-
-### Fixed
-
-- [TD-6167] Schedule Job to load locales in prod config
+- [TD-6243] Messages for deleting Elasticsearch indexes
 
 ### Fixed
 
