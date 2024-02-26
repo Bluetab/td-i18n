@@ -6,6 +6,7 @@
 
 - [TD-6243] Support for deleting Elasticsearch indexes
 - [TD-6258] Support of locales in cache
+- [TD-6223] Allow custom configuration of global search page
 
 ### Fixed
 
