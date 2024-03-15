@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-6433] Messages for AI Provider and Sandbox
+- [TD-4110] Messages for tab roles in structures view
 
 ## [6.2.0] 2024-02-26
 
