@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-6424] Added translation for implementation type
+
 ## [6.3.0] 2024-03-20
 
 ### Added
