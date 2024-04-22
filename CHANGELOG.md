@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-6424] Added translation for implementation type
+- [TD-5520] Added new permission group messages
 
 ## [6.3.0] 2024-03-20
 
