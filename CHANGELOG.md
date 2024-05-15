@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-6455] Added translations for filters updated_at
+
 ## [6.5.0] 2024-04-30
 
 ### Added
