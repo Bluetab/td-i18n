@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-6499] Messages for content origin icons and labels
+
 ## [6.7.0] 2024-06-13
 
 ### Added
