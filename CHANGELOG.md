@@ -1,5 +1,11 @@
 # Changelog
 
+## [6.7.0] 2024-06-13
+
+### Added
+
+- [TD-5788] Added translations for grant_requests
+
 ## [6.6.0] 2024-05-21
 
 ### Added
