@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.8.0] 2024-07-03
+
+### Added
+
+- [TD-6499] Messages for content origin icons and labels
+- [TD-4647] Messages for structure pending notes
+
 ## [6.7.0] 2024-06-13
 
 ### Added
