@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- [TD-5149] Messages for implementation structure relations 
+
 ### Changed
 
 - [TD-6602] Update td-cache
