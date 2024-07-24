@@ -4,7 +4,8 @@
 
 ### Added
 
-- [TD-5149] Messages for implementation structure relations 
+- [TD-5149] Messages for implementation structure relations
+- [TD-6689] Add Implementations conditional linked concepts display messages
 
 ### Changed
 
