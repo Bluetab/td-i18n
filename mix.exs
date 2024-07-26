@@ -6,7 +6,7 @@ defmodule TdI18n.MixProject do
       app: :td_i18n,
       version:
         case System.get_env("APP_VERSION") do
-          nil -> "6.8.0-local"
+          nil -> "6.9.0-local"
           v -> v
         end,
       elixir: "~> 1.13",
@@ -60,7 +60,7 @@ defmodule TdI18n.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:guardian, "~> 2.0"},
       {:quantum, "~> 3.0"},
-      {:td_cache, git: "https://github.com/Bluetab/td-cache.git", tag: "6.2.0"},
+      {:td_cache, git: "https://github.com/Bluetab/td-cache.git", tag: "6.9.1"},
       {:ex_machina, "~> 2.4", only: :test},
       {:assertions, "~> 0.19", only: :test},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},

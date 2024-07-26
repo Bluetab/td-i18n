@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.9.0] 2024-07-26 
+
+### Added
+
+- [TD-5149] Messages for implementation structure relations
+- [TD-6689] Add Implementations conditional linked concepts display messages
+
+### Changed
+
+- [TD-6602] Update td-cache
+
 ## [6.8.0] 2024-07-03
 
 ### Added
