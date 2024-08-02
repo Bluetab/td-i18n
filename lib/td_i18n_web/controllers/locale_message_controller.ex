@@ -9,13 +9,12 @@ defmodule TdI18nWeb.LocaleMessageController do
   action_fallback TdI18nWeb.FallbackController
 
   def index(conn, %{"locale_id" => id_or_lang}) do
-    %{messages: messages} = get_locale!(id_or_lang)
-
+    %{messages: messages} = get_locale(id_or_lang)
     render(conn, "index.json", messages: messages)
   end
 
   def create(conn, %{"locale_id" => id_or_lang, "message" => message_params}) do
-    locale = get_locale!(id_or_lang)
+    locale = get_locale(id_or_lang)
 
     with {:ok, %Message{} = message} <- Messages.create_message(locale, message_params) do
       conn
@@ -26,10 +25,10 @@ defmodule TdI18nWeb.LocaleMessageController do
     end
   end
 
-  defp get_locale!(id_or_lang) do
+  defp get_locale(id_or_lang) do
     case Integer.parse(id_or_lang) do
       {id, ""} -> Locales.get_locale!(id)
-      _ -> Locales.get_by!(lang: id_or_lang)
+      _ -> Locales.get_by(lang: id_or_lang, is_enabled: true)
     end
   end
 end
