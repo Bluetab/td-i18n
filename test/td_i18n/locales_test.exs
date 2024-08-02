@@ -23,9 +23,15 @@ defmodule TdI18n.LocalesTest do
       assert Locales.get_locale!(locale.id) == locale
     end
 
-    test "get_by!/1 returns the locale with given lang" do
+    test "get_by/1 returns the locale with given lang" do
       locale = insert(:locale)
-      assert Locales.get_by!(lang: locale.lang) == locale
+      assert Locales.get_by(lang: locale.lang) == locale
+    end
+
+    test "get_by/1 returns default locale if the given locale don't exists" do
+      locale = insert(:locale, is_default: true, is_enabled: true)
+
+      assert Locales.get_by(lang: "not_exists", is_enabled: true) == locale
     end
 
     test "get_default_locale/0 return default locale" do
@@ -410,7 +416,7 @@ defmodule TdI18n.LocalesTest do
                    message_id: "test.message.key"
                  }
                ]
-             } = Locales.get_by!(lang: "td")
+             } = Locales.get_by(lang: "td")
     end
 
     test "load messages on existing locale" do
@@ -436,7 +442,7 @@ defmodule TdI18n.LocalesTest do
                    message_id: "test.message.key"
                  }
                ]
-             } = Locales.get_by!(lang: "td")
+             } = Locales.get_by(lang: "td")
     end
 
     test "load maintained first lang in Locales messages on enabled locales when no default set" do
@@ -466,7 +472,7 @@ defmodule TdI18n.LocalesTest do
                    message_id: "test.message.key"
                  }
                ]
-             } = Locales.get_by!(lang: "bt")
+             } = Locales.get_by(lang: "bt", is_enabled: true)
     end
 
     test "load default lang found in file messages on enabled locales" do
@@ -496,7 +502,7 @@ defmodule TdI18n.LocalesTest do
                    message_id: "test.message.key"
                  }
                ]
-             } = Locales.get_by!(lang: "bt")
+             } = Locales.get_by(lang: "bt")
     end
 
     test "default lang not found in maintained file load first maintained lang messages on enabled locales" do
@@ -526,7 +532,7 @@ defmodule TdI18n.LocalesTest do
                    message_id: "test.message.key"
                  }
                ]
-             } = Locales.get_by!(lang: "bt")
+             } = Locales.get_by(lang: "bt")
     end
   end
 
