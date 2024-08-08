@@ -3,8 +3,7 @@ defmodule TdI18nWeb.LocaleMessageControllerTest do
 
   describe "GET /api/locales/:locale_id/messages" do
     test "returns messages by locale id", %{conn: conn} do
-      %{id: locale_id} = insert(:locale, is_default: true, is_required: true, is_enabled: true)
-      %{message_id: message_id, definition: definition} = insert(:message, locale_id: locale_id)
+      %{locale_id: locale_id, message_id: message_id, definition: definition} = insert(:message)
 
       assert %{message_id => definition} ==
                conn
@@ -13,10 +12,7 @@ defmodule TdI18nWeb.LocaleMessageControllerTest do
     end
 
     test "returns messages by lang", %{conn: conn} do
-      locale = insert(:locale, is_default: true, is_enabled: true)
-
-      %{locale: %{lang: lang}, message_id: message_id, definition: definition} =
-        insert(:message, locale: locale)
+      %{locale: %{lang: lang}, message_id: message_id, definition: definition} = insert(:message)
 
       assert %{message_id => definition} ==
                conn

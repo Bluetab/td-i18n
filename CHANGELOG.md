@@ -1,11 +1,5 @@
 # Changelog
 
-## [Unreleased]
-
-### Added
-
-- [TD-6576] Added checking if language is enabled or use default language instead
-
 ## [6.9.0] 2024-07-26 
 
 ### Added

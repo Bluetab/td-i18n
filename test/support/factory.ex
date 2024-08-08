@@ -8,7 +8,7 @@ defmodule TdI18n.Factory do
   alias TdI18n.Locales.Locale
   alias TdI18n.Messages.Message
 
-  def locale_factory(attrs) do
+  def locale_factory do
     %Locale{
       lang: sequence("locale_lang"),
       is_default: false,
@@ -18,7 +18,6 @@ defmodule TdI18n.Factory do
       local_name: sequence("locale_local_name"),
       messages: []
     }
-    |> merge_attributes(attrs)
   end
 
   def message_factory(attrs) do
