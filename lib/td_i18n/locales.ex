@@ -21,18 +21,12 @@ defmodule TdI18n.Locales do
     |> Repo.all()
   end
 
-  def get_by(clauses, opts \\ [preload: :messages]) do
+  def get_by!(clauses, opts \\ [preload: :messages]) do
     preloads = Keyword.get(opts, :preload, [])
 
-    locale =
-      Locale
-      |> preload(^preloads)
-      |> Repo.get_by(clauses)
-
-    case locale do
-      nil -> get_default_locale(preload: preloads)
-      result -> result
-    end
+    Locale
+    |> preload(^preloads)
+    |> Repo.get_by!(clauses)
   end
 
   def get_locale!(id, opts \\ [preload: :messages]) do
@@ -45,11 +39,8 @@ defmodule TdI18n.Locales do
 
   def get_locale(id), do: Repo.get(Locale, id)
 
-  def get_default_locale(opts \\ []) do
-    preloads = Keyword.get(opts, :preload, [])
-
+  def get_default_locale do
     Locale
-    |> preload(^preloads)
     |> where([l], l.is_default == true)
     |> Repo.one()
   end
