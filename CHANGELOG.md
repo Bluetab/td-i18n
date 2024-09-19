@@ -5,8 +5,9 @@
 ### Added
 
 - [TD-6184] Messages for Actions
+- [TD-6220] Messages for QualityControl with Source
 
-## [6.9.0] 2024-07-26 
+## [6.9.0] 2024-07-26
 
 ### Added
 
