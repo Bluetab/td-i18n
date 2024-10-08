@@ -6,6 +6,10 @@
 
 - [TD-6824] Actions messages for tasks
 
+### Added
+
+- [TD-3612] Added messages for BranchViewer component
+
 ## [6.12.0] 2024-09-23
 
 ### Added
