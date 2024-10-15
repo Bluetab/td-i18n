@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.13.0] 2024-10-15
+
+### Changed
+
+- [TD-6824] Actions messages for tasks
+
+## [6.12.0] 2024-09-23
+
+### Changed
+
+- [TD-6824] Actions messages for tasks
+
 ## [6.12.0] 2024-09-23
 
 ### Added
