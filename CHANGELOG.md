@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-6888] Add messages for expandable columns
+
 ## [6.13.0] 2024-10-15
 
 ### Changed
