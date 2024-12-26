@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-6938] Add Structure last changed at message
+
 ## [6.16.0] 2024-12-16
 
 ### Added
