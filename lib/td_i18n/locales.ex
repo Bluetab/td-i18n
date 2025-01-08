@@ -107,7 +107,7 @@ defmodule TdI18n.Locales do
       |> populate_enabled_locales()
       |> Enum.each(&do_load_locale_message!/1)
     else
-      Logger.warn("File #{path} does not exist")
+      Logger.warning("File #{path} does not exist")
     end
   end
 
@@ -118,7 +118,7 @@ defmodule TdI18n.Locales do
       |> Jason.decode!()
       |> do_load_locales()
     else
-      Logger.warn("File #{path} does not exist")
+      Logger.warning("File #{path} does not exist")
     end
   end
 

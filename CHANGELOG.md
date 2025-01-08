@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Changed
+
+- [TD-6911]
+  - update Elixir 1.18
+  - update dependencies
+  - update Docker RUNTIME_BASE=alpine:3.21
+  - remove unused dependencies
+
 ### Added
 
 - [TD-6938] Add Structure last changed at message
