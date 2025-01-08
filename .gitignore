@@ -19,8 +19,16 @@ erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
+# Temporary files, for example, from tests.
+/tmp/
+
 # Ignore package tarball (built via "mix hex.build").
 td_i18n-*.tar
 
+/priv/plts/*.plt
+/priv/plts/*.plt.hash
+
 .tool-versions
+.DS_Store
+.elixir_ls
 TODO.*
