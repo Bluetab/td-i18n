@@ -17,9 +17,9 @@ To start your Phoenix server:
 
 ### Installing
 
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
-  * Now you can visit [`localhost:4003`](http://localhost:4003) from your browser.
+- Create and migrate your database with `mix ecto.setup`
+- Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+- Now you can visit [`localhost:4003`](http://localhost:4003) from your browser.
 
 ## Running the tests
 
@@ -43,8 +43,6 @@ guides](http://www.phoenixframework.org/docs/deployment).
 - [Phoenix](http://www.phoenixframework.org/) - Web framework
 - [Ecto](http://www.phoenixframework.org/) - Phoenix and Ecto integration
 - [Postgrex](http://hexdocs.pm/postgrex/) - PostgreSQL driver for Elixir
-- [Gettext](https://hexdocs.pm/gettext) - Internationalization and localization
-  support for Elixir
 - [Cowboy](https://ninenines.eu) - HTTP server for Erlang/OTP
 - [Credo](http://credo-ci.org/) - Static code analysis tool for the Elixir
   language

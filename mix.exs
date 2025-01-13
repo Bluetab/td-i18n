@@ -6,10 +6,10 @@ defmodule TdI18n.MixProject do
       app: :td_i18n,
       version:
         case System.get_env("APP_VERSION") do
-          nil -> "6.16.0-local"
+          nil -> "7.0.0-local"
           v -> v
         end,
-      elixir: "~> 1.13",
+      elixir: "~> 1.18",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -49,23 +49,23 @@ defmodule TdI18n.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.6.15"},
-      {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.6"},
-      {:postgrex, ">= 0.0.0"},
-      {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.18"},
-      {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"},
+      {:phoenix, "~> 1.7.18"},
+      {:phoenix_ecto, "~> 4.6.3"},
+      {:phoenix_view, "~> 2.0"},
+      {:plug_cowboy, "~> 2.7"},
+      {:ecto_sql, "~> 3.12.1"},
+      {:postgrex, "~> 0.19.3"},
+      {:jason, "~> 1.4.4"},
+      {:telemetry_metrics, "~> 1.0"},
+      {:telemetry_poller, "~> 1.1.0"},
       {:guardian, "~> 2.0"},
-      {:quantum, "~> 3.0"},
-      {:td_cache, git: "https://github.com/Bluetab/td-cache.git", tag: "6.9.1"},
-      {:ex_machina, "~> 2.4", only: :test},
-      {:assertions, "~> 0.19", only: :test},
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0", only: :dev, runtime: false},
-      {:sobelow, "~> 0.11", only: [:dev, :test]}
+      {:quantum, "~> 3.5.3"},
+      {:td_cache, git: "https://github.com/Bluetab/td-cache.git", tag: "7.0.1"},
+      {:credo, "~> 1.7.11", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.4.5", only: :dev, runtime: false},
+      {:ex_machina, "~> 2.8", only: :test},
+      {:assertions, "~> 0.20.1", only: :test},
+      {:sobelow, "~> 0.13", only: [:dev, :test]}
     ]
   end
 

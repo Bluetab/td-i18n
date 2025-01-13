@@ -1,5 +1,20 @@
 # Changelog
 
+## [7.0.0] 2025-01-13
+
+### Added
+
+- [TD-3612] Added messages for Domains general search
+- [TD-6938] Add Structure last changed at message
+
+### Changed
+
+- [TD-6911]
+  - update Elixir 1.18
+  - update dependencies
+  - update Docker RUNTIME_BASE=alpine:3.21
+  - remove unused dependencies
+
 ## [6.16.0] 2024-12-16
 
 ### Added

@@ -22,7 +22,6 @@ defmodule TdI18nWeb do
       use Phoenix.Controller, namespace: TdI18nWeb
 
       import Plug.Conn
-      import TdI18nWeb.Gettext
       alias TdI18nWeb.Router.Helpers, as: Routes
 
       defp authorize(conn) do
@@ -61,7 +60,6 @@ defmodule TdI18nWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import TdI18nWeb.Gettext
     end
   end
 
@@ -71,7 +69,6 @@ defmodule TdI18nWeb do
       import Phoenix.View
 
       import TdI18nWeb.ErrorHelpers
-      import TdI18nWeb.Gettext
       alias TdI18nWeb.Router.Helpers, as: Routes
     end
   end

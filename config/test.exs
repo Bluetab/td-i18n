@@ -20,7 +20,7 @@ config :td_i18n, TdI18nWeb.Endpoint, server: false
 config :td_i18n, TdI18n.Scheduler, jobs: []
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
