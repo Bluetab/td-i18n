@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Added
+
+- [TD-3612] Added messages for Domains general search
+- [TD-6938] Add Structure last changed at message
+
 ### Changed
 
 - [TD-6911]
@@ -9,10 +14,6 @@
   - update dependencies
   - update Docker RUNTIME_BASE=alpine:3.21
   - remove unused dependencies
-
-### Added
-
-- [TD-6938] Add Structure last changed at message
 
 ## [6.16.0] 2024-12-16
 
