@@ -1,11 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-6862] QX scores messages
+
 ## [7.0.0] 2025-01-13
 
 ### Added
 
-- [TD-3612] Added messages for Domains general search
-- [TD-6938] Add Structure last changed at message
+- [TD-3612] Messages for Domains general search
+- [TD-6938] Structure last changed at message
 
 ### Changed
 
@@ -19,7 +25,7 @@
 
 ### Added
 
-- [TD-6888] Add messages for expandable columns
+- [TD-6888] Messages for expandable columns
 
 ## [6.13.0] 2024-10-15
 
