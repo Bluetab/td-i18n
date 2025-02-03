@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-6862] QX scores messages
+- [TD-6958] Add Concepts Subscore Messages
 
 ## [7.0.0] 2025-01-13
 
