@@ -253,7 +253,13 @@
     "concepts.actions.version": "New Version",
     "concepts.bulkUpdate.success.content": "Updated {count} concepts successfully",
     "concepts.bulkUpdate.success.header": "Succeded Bulk Update",
+    "concepts.crumbs.deprecated": "Deprecated",
+    "concepts.crumbs.pending": "Draft",
     "concepts.crumbs.top": "Business Glossary",
+    "concepts.default.deprecated.header": "Deprecated",
+    "concepts.default.deprecated.subheader": "Deprecated concepts",
+    "concepts.default.pending.header": "Draft",
+    "concepts.default.pending.subheader": "Pending Concepts",
     "concepts.edit.bulk.confirmation.content": "{concepts_count} concepts will be updated. Are you sure?",
     "concepts.edit.bulk.confirmation.header": "Bulk update",
     "concepts.form.aditional_fields": "Template fields (only required for publishing)",
@@ -523,7 +529,6 @@
     "filters.control_mode.raw.deviation": "Deviation",
     "filters.control_mode.raw.error_count": "Error count",
     "filters.control_mode.raw.percentage": "Percentage",
-
     "filters.current_business_concept_version": "Concept",
     "filters.approved_by": "Approver",
     "filters.current_status": "Status",
@@ -1341,34 +1346,26 @@
     "quality.thresholds": "Limits",
     "quality.type": "Type",
     "quality.updated_at": "Last changed",
-    
     "quality_control.actions.do_execution": "Execute quality control",
     "quality_control.actions.execution.confirmation.content": "This quality control will be executed. Are you sure?",
     "quality_control.control_mode": "Control mode",
     "quality_control.control_properties.empty": "Empty control properties",
-    "quality_control.error_count.errors_resource.empty": "Empty Dataset", 
-
+    "quality_control.error_count.errors_resource.empty": "Empty Dataset",
     "quality_control.form.active": "Enable",
-
     "quality_control.form.control_properties": "Implementation",
     "quality_control.form.control_properties.ratio.resource": "Dataset",
     "quality_control.form.control_properties.ratio.validation": "Validation",
     "quality_control.form.control_properties.error_count.errors_resource": "Dataset",
-
-
     "quality_control.form.control_mode": "Control mode",
     "quality_control.form.executable": "Executable",
     "quality_control.form.name": "Name",
-    
     "quality_control.form.dataset.empty": "No dataset defined",
     "quality_control.form.domain_ids": "Domains",
-    
     "quality_control.form.information": "Information",
     "quality_control.form.validation.empty": "No validation defined",
     "quality_control.form.version": "Version",
     "quality_control.props.name": "Name",
     "quality_control.form.df_type": "Type",
-
     "quality_control.form.status": "Status",
     "quality_control.form.updated_at": "Updated at",
     "quality_control.queries.loading": "Loading queries",
@@ -1377,7 +1374,6 @@
     "quality_control.ratio.validation.empty": "Empty validation",
     "quality_control.ratio.resource.empty": "Empty resource",
     "quality_control.error_count.errors_resource": "Dataset",
-
     "quality_control_execution_group.search.results.empty": "No execution groups found",
     "quality_control_execution_group.status.failed": "Failed",
     "quality_control_execution_group.status.pending": "Pending",
@@ -1402,7 +1398,6 @@
     "quality_controls.actions.enable.confirmation.header": "Enable quality control",
     "quality_controls.actions.disable.confirmation.content": "Quality control {name} will be disabled. Are you sure?",
     "quality_controls.actions.enable.confirmation.content": "Quality control {name} will be enabled. Are you sure?",
-
     "quality_controls.edit.subheader": "Edit quality control",
     "quality_controls.execute.filtered": "{count} quality controls to execute",
     "quality_controls.header": "Quality Controls",
@@ -1439,7 +1434,6 @@
     "quality_control.props.active.true": "Enabled",
     "quality_control.props.active.false": "Disabled",
     "quality_control.props.version": "Version",
-
     "quality_control.tabs.quality_control": "Detail",
     "quality_control.tabs.history": "History",
     "quality_control.tabs.scores": "Scores",
@@ -1997,14 +1991,11 @@
     "rules.upload.success.header": "Upload successful! Loaded {count_ids} omitted {count_errors}",
     "saveConceptFilters.error.name.unique": "Duplicated name",
     "saveUserSearchFilters.error.name.duplicated": "Duplicated name",
-
     "score_groups.header": "My score Groups",
     "score_groups.table.header.created": "Created",
     "score_groups.search.results.empty": "No execution groups found",
     "score.actions.delete.confirmation.header": "Delete result",
     "score.actions.delete.confirmation.content": "This result will be deleted. Are you sure?",
-
-
     "score.details": "Details",
     "score.information": "Information",
     "score.no_results": "No results",
@@ -2016,7 +2007,6 @@
     "score.result_label.no_execution": "No execution",
     "score.result_label.not_comply": "Does not comply the criteria",
     "score.result_label.warning": "Comply the threshold",
-
     "score.event.type.PENDING": "Pending",
     "score.event.type.QUEUED": "Queued",
     "score.event.type.STARTED": "Started",
@@ -2025,24 +2015,16 @@
     "score.event.type.SUCCEEDED": "Succeeded",
     "score.event.type.FAILED": "Failed",
     "score.event.type.TIMEOUT": "Timeout",
-
-
-
-
     "score.status.failed": "Failed",
     "score.status.FAILED": "Failed",
     "score.status.PENDING": "Pending",
     "score.status.QUEUED": "Queued",
     "score.status.SUCCEEDED": "Succeeded",
     "score.status.STARTED": "Started",
-
-
     "scores.completed.header": "Scores completed",
     "scores.completed.content": "{count} scores completed",
-
     "scores.detail.header": "Score view",
     "scores.empty": "No scores found",
-
     "scores.event.props.inserted_at": "Date",
     "scores.event.props.type": "Type",
     "scores.event.props.message": "Message",
@@ -2051,11 +2033,8 @@
     "scores.props.quality_control_status": "Control status",
     "scores.props.quality": "Quality",
     "scores.props.status": "Status",
-
     "scores.pending.header": "Scores scheduled",
     "scores.pending.content": "There are {pending} scores pending, please check again later",
-
-
     "search.applied_filters": "Filters:",
     "search.clear_filters": "Clear filters",
     "search.data_catalog_desc": "Inventory of the organizations technical data assets (local functional & technical metadata, data lineage and relationships).",
@@ -2129,7 +2108,6 @@
     "sidemenu.my_grant_requests": "My Grant Requests",
     "sidemenu.my_grants": "My Grants",
     "sidemenu.my_score_groups": "My score Groups",
-
     "sidemenu.pending_structure_notes": "Pending notes",
     "sidemenu.prompts": "Prompts",
     "sidemenu.providers": "GenAI Providers",
@@ -2192,9 +2170,6 @@
     "sources.header": "Metadata Sources",
     "sources.search.placeholder": "Search sources",
     "sources.subheader": "Management of Metadata Sources",
-
-
-
     "structure._actions": " ",
     "structure.actions.delete.confirmation.content": "This structure and all its descendant structures will be deleted. Are you sure?",
     "structure.actions.delete.confirmation.header": "Delete Structure",
@@ -2715,10 +2690,8 @@
     "tabs.implementations": "Data Quality",
     "tabs.members": "Members",
     "tabs.qualityRules": "Quality Rules",
-
     "tabs.qx.score.details": "Details",
     "tabs.qx.score.score_events": "Events",
-
     "tabs.se.all": "All",
     "tabs.se.concepts": "Glossary",
     "tabs.se.ingests": "Data requests",
@@ -3258,7 +3231,13 @@
     "concepts.actions.version": "Nueva versión",
     "concepts.bulkUpdate.success.content": "Se han actualizado {count} términos",
     "concepts.bulkUpdate.success.header": "Actualización terminada con éxito",
+    "concepts.crumbs.deprecated": "Archivados",
+    "concepts.crumbs.pending": "Borrador",
     "concepts.crumbs.top": "Glosario de conceptos",
+    "concepts.default.deprecated.header": "Archivados",
+    "concepts.default.deprecated.subheader": "Consultar conceptos archivados",
+    "concepts.default.pending.header": "Borradores",
+    "concepts.default.pending.subheader": "Consultar conceptos en borrador",
     "concepts.edit.bulk.confirmation.content": "Se van a actualizar {concepts_count} términos. ¿Estás seguro?",
     "concepts.edit.bulk.confirmation.header": "Actualización masiva",
     "concepts.form.aditional_fields": "Campos de la plantilla (solo requerido para publicar)",
@@ -4348,36 +4327,30 @@
     "quality_control.actions.execution.confirmation.content": "Se va a solicitar la ejecución de este control de calidad. ¿Estás seguro?",
     "quality_control.control_mode": "Tipo de resultado",
     "quality_control.control_properties.empty": "Propiedades del control vacias",
-    "quality_control.error_count.errors_resource.empty": "Origen vacio", 
+    "quality_control.error_count.errors_resource.empty": "Origen vacio",
     "quality_control.form.active": "Activo",
-
     "quality_control.form.control_properties": "Implementación",
     "quality_control.form.control_properties.ratio.resource": "Origen",
     "quality_control.form.control_properties.ratio.validation": "Conjunto de datos",
     "quality_control.form.control_properties.error_count.errors_resource": "Origen",
-    
     "quality_control.form.control_mode": "Tipo de resultado",
     "quality_control.form.executable": "Ejecutable",
     "quality_control.form.name": "Nombre",
     "quality_control.form.dataset.empty": "No hay conjunto de datos definido",
     "quality_control.form.domain_ids": "Dominios",
-   
     "quality_control.form.information": "Información",
     "quality_control.form.df_type": "Tipo",
-
     "quality_control.form.status": "Estado",
     "quality_control.form.updated_at": "Actualizado en",
     "quality_control.form.validation.empty": "No hay validación definida",
     "quality_control.form.version": "Versión",
     "quality_control.props.name": "Nombre",
     "quality_control.queries.loading": "Cargando queries",
-   
     "quality_control.ratio.resource": "Conjunto de datos",
     "quality_control.ratio.validation": "Validación",
     "quality_control.ratio.validation.empty": "Validación vacia",
     "quality_control.ratio.resource.empty": "Origen vacio",
     "quality_control.error_count.errors_resource": "Origen",
-    
     "quality_control_execution_group.status.failed": "Fallida",
     "quality_control_execution_group.status.pending": "Pendiente",
     "quality_control_execution_group.status.started": "Iniciada",
@@ -4402,7 +4375,6 @@
     "quality_controls.actions.enable.confirmation.header": "Activar control de calidad",
     "quality_controls.actions.disable.confirmation.content": "El control de calidad {name} va a ser desactivado. ¿Desea proceder?",
     "quality_controls.actions.enable.confirmation.content": "El control de calidad {name} va a ser activado. ¿Desea proceder?",
-
     "quality_controls.edit.subheader": "Editar control de calidad",
     "quality_controls.execute.filtered": "{count} controles de calidad a ejecutar",
     "quality_controls.header": "Controles de calidad",
@@ -4996,14 +4968,11 @@
     "rules.upload.success.header": "¡Fichero subido correctamente! subidos {count_ids} errores {count_errors}",
     "saveConceptFilters.error.name.unique": "Nombre duplicado",
     "saveUserSearchFilters.error.name.duplicated": "Nombre duplicado",
-
-
     "score_groups.header": "Mis grupos de ejecución",
     "score_groups.table.header.created": "Creado",
     "score_groups.search.results.empty": "No se han encontrado grupos de ejecuión",
     "score.actions.delete.confirmation.header": "Eliminar resultado",
     "score.actions.delete.confirmation.content": "¿Desea eliminar el resultado?",
-
     "score.details": "Detalle",
     "score.information": "Información",
     "score.no_results": "Sin datos",
@@ -5015,8 +4984,6 @@
     "score.result_label.no_execution": "Sin ejecutar",
     "score.result_label.not_comply": "No cumple el objetivo",
     "score.result_label.warning": "Cumple el límite",
-
-
     "score.event.type.PENDING": "Pendiente",
     "score.event.type.QUEUED": "En cola",
     "score.event.type.STARTED": "Iniciado",
@@ -5025,21 +4992,14 @@
     "score.event.type.SUCCEEDED": "Finalizado",
     "score.event.type.FAILED": "Fallida",
     "score.event.type.TIMEOUT": "Tiempo agotado",
-
-    
-
     "score.status.failed": "Fallida",
     "score.status.FAILED": "Fallida",
     "score.status.PENDING": "Pendiente",
     "score.status.QUEUED": "En cola",
     "score.status.SUCCEEDED": "Finalizado",
     "score.status.STARTED": "Iniciado",
-
     "scores.completed.header": "Ejecuciones finalizadas",
     "scores.completed.content": "Se han ejecutado {count}",
-
-
-
     "scores.detail.header": "Vista de resultado",
     "scores.empty": "No hay resultados",
     "scores.event.props.inserted_at": "Fecha",
@@ -5050,10 +5010,8 @@
     "scores.props.quality_control_status": "Estado del Control",
     "scores.props.quality": "Calidad",
     "scores.props.status": "Estado",
-
     "scores.pending.header": "Ejecuciones programadas",
     "scores.pending.content": "Quedan {pending} ejecuciones pendientes, por favor comprueba de nuevo más tarde",
-
     "search.applied_filters": "Filtros aplicados:",
     "search.glossary": "Glosario (Conceptos de negocio)",
     "search.clear_filters": "Limpiar filtros",
@@ -5709,10 +5667,8 @@
     "tabs.implementations": "Calidad",
     "tabs.members": "Roles",
     "tabs.qualityRules": "Reglas de Calidad",
-
     "tabs.qx.score.details": "Detalles",
     "tabs.qx.score.score_events": "Eventos",
-
     "tabs.se.all": "Todo",
     "tabs.se.concepts": "Glosario",
     "tabs.se.ingests": "Peticiones de datos",
