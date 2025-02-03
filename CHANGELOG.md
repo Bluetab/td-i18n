@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-6862] QX scores messages
+- [TD-6022] Added messages for validations in upload of hierarchies by file
 - [TD-6958] Add Concepts Subscore Messages
 
 ## [7.0.0] 2025-01-13
@@ -21,6 +22,11 @@
   - update dependencies
   - update Docker RUNTIME_BASE=alpine:3.21
   - remove unused dependencies
+
+### Added
+
+- [TD-6938] Add Structure last changed at message
+- [TD-6022] Add validation message for invalid hierarchy values during CSV load
 
 ## [6.16.0] 2024-12-16
 
