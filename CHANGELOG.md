@@ -1,11 +1,19 @@
 # Changelog
 
+## [7.1.0] 2025-02-04
+
+### Added
+
+- [TD-6862] QX scores messages
+- [TD-6022] Added messages for validations in upload of hierarchies by file
+- [TD-6958] Add Concepts Subscore Messages
+- [TD-6868] Messages for structure profile tabs
+
 ## [7.0.0] 2025-01-13
 
 ### Added
 
-- [TD-3612] Added messages for Domains general search
-- [TD-6938] Add Structure last changed at message
+- [TD-3612] Messages for Domains general search
 
 ### Changed
 
@@ -19,15 +27,10 @@
 
 ### Added
 
-- [TD-6888] Add messages for expandable columns
+- [TD-6888] Messages for expandable columns
+- [TD-6938] Structure last changed at message
 
 ## [6.13.0] 2024-10-15
-
-### Changed
-
-- [TD-6824] Actions messages for tasks
-
-## [6.12.0] 2024-09-23
 
 ### Changed
 
