@@ -7,6 +7,7 @@
 - [TD-6862] QX scores messages
 - [TD-6022] Added messages for validations in upload of hierarchies by file
 - [TD-6958] Add Concepts Subscore Messages
+- [TD-6868] Messages for structure profile tabs
 
 ## [7.0.0] 2025-01-13
 
