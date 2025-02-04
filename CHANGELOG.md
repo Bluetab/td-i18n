@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [7.1.0] 2025-02-04
 
 ### Added
 
@@ -14,7 +14,6 @@
 ### Added
 
 - [TD-3612] Messages for Domains general search
-- [TD-6938] Structure last changed at message
 
 ### Changed
 
@@ -24,24 +23,14 @@
   - update Docker RUNTIME_BASE=alpine:3.21
   - remove unused dependencies
 
-### Added
-
-- [TD-6938] Add Structure last changed at message
-- [TD-6022] Add validation message for invalid hierarchy values during CSV load
-
 ## [6.16.0] 2024-12-16
 
 ### Added
 
 - [TD-6888] Messages for expandable columns
+- [TD-6938] Structure last changed at message
 
 ## [6.13.0] 2024-10-15
-
-### Changed
-
-- [TD-6824] Actions messages for tasks
-
-## [6.12.0] 2024-09-23
 
 ### Changed
 
