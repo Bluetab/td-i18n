@@ -1,12 +1,18 @@
 # Changelog
 
+## [7.1.1] 2025-02-10
+
+### Fixed
+
+- [TD-6958] Fix Concepts Subscope missing Messages
+
 ## [7.1.0] 2025-02-04
 
 ### Added
 
 - [TD-6862] QX scores messages
 - [TD-6022] Added messages for validations in upload of hierarchies by file
-- [TD-6958] Add Concepts Subscore Messages
+- [TD-6958] Add Concepts Subscope Messages
 - [TD-6868] Messages for structure profile tabs
 
 ## [7.0.0] 2025-01-13
