@@ -4,6 +4,7 @@
 
 ### Added
 
+- [TD-7034] Update download and upload structure file messages and add new ones.
 - [TD-7069] Add Domains refactor messages
 
 ## [7.1.1] 2025-02-10
