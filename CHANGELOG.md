@@ -6,6 +6,7 @@
 
 - [TD-7034] Update download and upload structure file messages and add new ones.
 - [TD-7069] Add Domains refactor messages
+- [TD-7091] Add language selector display messages for concepts
 
 ## [7.1.1] 2025-02-10
 
