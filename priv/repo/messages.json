@@ -1564,6 +1564,7 @@
     "providers.type.openai": "OpenAI",
     "providers.type.azure_openai": "Azure OpenAI",
     "providers.type.bedrock_claude": "Bedrock Claude",
+    "providers.type.gemini": "Gemini",
     "providers.form.name": "Name",
     "providers.form.name.new": "New provider",
     "providers.form.type": "Type",
