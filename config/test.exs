@@ -8,14 +8,16 @@ import Config
 config :td_i18n, TdI18n.Repo,
   username: "postgres",
   password: "postgres",
+  database: "td_i18n_test",
   hostname: "postgres",
-  database: "td_i18n_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 1
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :td_i18n, TdI18nWeb.Endpoint, server: false
+config :td_i18n, TdI18nWeb.Endpoint,
+  http: [port: 4002],
+  server: false
 
 config :td_i18n, TdI18n.Scheduler, jobs: []
 

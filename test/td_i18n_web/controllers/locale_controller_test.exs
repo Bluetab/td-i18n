@@ -2,6 +2,8 @@ defmodule TdI18nWeb.LocaleControllerTest do
   use TdI18nWeb.ConnCase
 
   alias TdCache.I18nCache
+  alias TdI18n.Cache.LocaleCache
+  alias TdI18n.Repo
 
   setup do
     on_exit(fn -> TdCache.Redix.del!("i18n:locales:*") end)
@@ -27,6 +29,35 @@ defmodule TdI18nWeb.LocaleControllerTest do
              } = locale
 
       refute Map.has_key?(locale, "messages")
+    end
+
+    test "uses cache for requests with messages", %{conn: conn} do
+      locale = insert(:locale, is_enabled: true)
+      message = insert(:message, locale: locale)
+
+      # Get initial cache state and convert to strings for comparison
+      initial_cache = LocaleCache.get_locales()
+
+      # Request should use cache directly without DB query
+      assert response =
+               conn
+               |> get(Routes.locale_path(conn, :index))
+               |> response(:ok)
+
+      # Response should exactly match cache
+      assert response == initial_cache
+
+      # Delete from DB to prove we're using cache
+      Repo.delete!(message)
+      Repo.delete!(locale)
+
+      # Request should still return cached data even though DB records are gone
+      assert cached_response =
+               conn
+               |> get(Routes.locale_path(conn, :index))
+               |> response(:ok)
+
+      assert cached_response == initial_cache
     end
   end
 
