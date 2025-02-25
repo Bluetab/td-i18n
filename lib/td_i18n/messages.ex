@@ -9,6 +9,7 @@ defmodule TdI18n.Messages do
 
   alias Ecto.Multi
   alias TdCache.I18nCache
+  alias TdI18n.Cache.LocaleCache
   alias TdI18n.Locales
   alias TdI18n.Locales.Locale
   alias TdI18n.Messages.Message
@@ -28,6 +29,7 @@ defmodule TdI18n.Messages do
     |> Multi.run(:cache, fn _, %{message: message} -> I18nCache.put(lang, message) end)
     |> Repo.transaction()
     |> then(&multi_result(&1))
+    |> maybe_refresh_cache()
   end
 
   defp insert_multi_message(multi, {lang_id, params}, message_id) do
@@ -57,6 +59,7 @@ defmodule TdI18n.Messages do
     end)
     |> Repo.transaction()
     |> then(&map_multi_result/1)
+    |> maybe_refresh_cache()
   end
 
   def update_message(%Message{} = message, params) do
@@ -69,6 +72,7 @@ defmodule TdI18n.Messages do
     end)
     |> Repo.transaction()
     |> then(&multi_result(&1))
+    |> maybe_refresh_cache()
   end
 
   def delete_message(%Message{} = message) do
@@ -79,6 +83,7 @@ defmodule TdI18n.Messages do
     end)
     |> Repo.transaction()
     |> then(&multi_result(&1))
+    |> maybe_refresh_cache()
   end
 
   def delete_deprecated_messages(message_ids, definitions) do
@@ -113,4 +118,11 @@ defmodule TdI18n.Messages do
   defp multi_result({:ok, %{message: changeset}}), do: {:ok, changeset}
 
   defp multi_result({:error, _, error, _}), do: {:error, error}
+
+  defp maybe_refresh_cache({:ok, _} = result) do
+    LocaleCache.refresh()
+    result
+  end
+
+  defp maybe_refresh_cache(result), do: result
 end

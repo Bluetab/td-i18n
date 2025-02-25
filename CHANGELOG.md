@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.2.0] 2025-02-25
+
+### Added
+
+- [TD-7034] Update download and upload structure file messages and add new ones.
+- [TD-7069] Add Domains refactor messages
+- [TD-7091] Add language selector display messages for concepts
+- [TD-7049] Add AI Gemini messages
+
+### Changed
+
+- [TD-7119] Cache locales in controller
+
 ## [7.1.1] 2025-02-10
 
 ### Fixed

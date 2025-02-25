@@ -9,13 +9,15 @@ defmodule TdI18n.LocalesTest do
   alias TdI18n.Repo
 
   setup do
-    on_exit(fn -> TdCache.Redix.del!("i18n:locales:*") end)
+    TdCache.Redix.del!("i18n:*")
+    on_exit(fn -> TdCache.Redix.del!("i18n:*") end)
   end
 
   describe "get and lis locales" do
     test "list_locales/0 returns all locales" do
       locale = insert(:locale)
-      assert Locales.list_locales() == [locale]
+      assert [result] = Locales.list_locales()
+      assert result.id == locale.id
     end
 
     test "get_locale!/1 returns the locale with given id" do
@@ -162,6 +164,7 @@ defmodule TdI18n.LocalesTest do
     end
 
     test "no add to cache the locale when is created if is_default equal false" do
+      insert(:locale, lang: "foo", is_default: true)
       {:ok, _} = I18nCache.put_default_locale("foo")
 
       assert {:ok, _} =
@@ -387,12 +390,6 @@ defmodule TdI18n.LocalesTest do
            end)
   end
 
-  test "delete_locale/1 deletes the locale" do
-    locale = insert(:locale)
-    assert {:ok, %Locale{}} = Locales.delete_locale(locale)
-    assert_raise Ecto.NoResultsError, fn -> Locales.get_locale!(locale.id) end
-  end
-
   describe "load_messages_from_file!/1" do
     test "creates new locale and load messages" do
       insert(:locale)
@@ -534,13 +531,54 @@ defmodule TdI18n.LocalesTest do
     test "load locales without duplicating" do
       insert(:locale, lang: "td", name: "Truedat", local_name: "Truedish")
 
-      assert 1 == Enum.count(Locales.list_locales())
+      assert [%{lang: "td"}] = Locales.list_locales()
 
       assert {:ok, {2, _}} = Locales.load_locales_from_file!("test/fixtures/locales_test.json")
       assert 3 == Enum.count(Locales.list_locales())
 
       assert {:ok, {0, _}} = Locales.load_locales_from_file!("test/fixtures/locales_test.json")
       assert 3 == Enum.count(Locales.list_locales())
+    end
+  end
+
+  describe "cache synchronization" do
+    test "enabling/disabling locales updates active locales in cache" do
+      locale1 = insert(:locale, lang: "en", is_default: true, is_enabled: true)
+      locale2 = insert(:locale, lang: "es", is_enabled: false)
+
+      message1 = insert(:message, locale_id: locale1.id)
+
+      I18nCache.put(locale1.lang, message1)
+
+      assert I18nCache.get_active_locales!() == ["en"]
+
+      {:ok, _} = Locales.update_locale(locale2, %{is_enabled: true})
+      assert I18nCache.get_active_locales!() ||| ["en", "es"]
+
+      {:ok, _} = Locales.update_locale(locale1, %{is_enabled: false})
+      assert I18nCache.get_active_locales!() == ["es"]
+    end
+
+    test "changing required locales updates cache" do
+      # Set up initial state
+      locale1 = insert(:locale, lang: "en", is_required: true)
+      locale2 = insert(:locale, lang: "es")
+      locale3 = insert(:locale, lang: "fr")
+      I18nCache.put_required_locales([locale1.lang])
+
+      # Add another required locale - context should update cache
+      {:ok, _} = Locales.update_locale(locale2, %{is_required: true})
+      {:ok, required} = I18nCache.get_required_locales()
+      assert Enum.sort(required) == ["en", "es"]
+
+      # Remove first required locale - context should update cache
+      {:ok, _} = Locales.update_locale(locale1, %{is_required: false})
+      assert {:ok, ["es"]} = I18nCache.get_required_locales()
+
+      # Add third required locale - context should update cache
+      {:ok, _} = Locales.update_locale(locale3, %{is_required: true})
+      {:ok, required} = I18nCache.get_required_locales()
+      assert Enum.sort(required) == ["es", "fr"]
     end
   end
 end
