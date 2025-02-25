@@ -10,7 +10,8 @@ defmodule TdI18n.Application do
     children = [
       TdI18n.Repo,
       TdI18n.Scheduler,
-      TdI18nWeb.Endpoint
+      TdI18nWeb.Endpoint,
+      TdI18n.Cache.LocaleCache
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

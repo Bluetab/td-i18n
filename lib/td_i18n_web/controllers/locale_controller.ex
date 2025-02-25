@@ -1,18 +1,22 @@
 defmodule TdI18nWeb.LocaleController do
   use TdI18nWeb, :controller
 
+  alias TdI18n.Cache.LocaleCache
   alias TdI18n.Locales
   alias TdI18n.Locales.Locale
 
   action_fallback TdI18nWeb.FallbackController
 
-  def index(conn, params) do
-    locales =
-      params
-      |> maybe_add_preloads()
-      |> Locales.list_locales()
+  def index(conn, %{"includeMessages" => "false"}) do
+    render(conn, "index.json", locales: Locales.list_locales())
+  end
 
-    render(conn, "index.json", locales: locales)
+  def index(conn, _params) do
+    json_data = LocaleCache.get_locales()
+
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(200, json_data)
   end
 
   def show(conn, %{"id" => id}) do
@@ -51,11 +55,4 @@ defmodule TdI18nWeb.LocaleController do
   def delete(conn, _) do
     send_resp(conn, :method_not_allowed, "")
   end
-
-  defp maybe_add_preloads(%{"includeMessages" => includeMessages}) do
-    maybe_add_preloads(String.to_atom(includeMessages))
-  end
-
-  defp maybe_add_preloads(false), do: []
-  defp maybe_add_preloads(_), do: [preload: :messages]
 end
