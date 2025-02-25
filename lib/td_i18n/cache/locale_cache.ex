@@ -87,10 +87,7 @@ defmodule TdI18n.Cache.LocaleCache do
   # Private functions
 
   defp fetch_and_encode_locales do
-    locales =
-      [preload: :messages]
-      |> Locales.list_locales()
-      |> Enum.filter(& &1.is_enabled)
+    locales = Locales.list_locales(preload: :messages, filters: [is_enabled: true])
 
     Logger.info("Refreshing cache with #{length(locales)} locales.")
 
