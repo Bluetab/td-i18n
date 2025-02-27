@@ -1,5 +1,9 @@
 # Changelog
 
+## [Unreleased]
+
+- [TD-6467] Include new message for mandatory name in AI Suggestions widget
+
 ## [7.2.0] 2025-02-25
 
 ### Added
