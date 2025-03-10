@@ -2,7 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
 - [TD-6467] Include new message for mandatory name in AI Suggestions widget
+- [TD-6927] Qx messages
 
 ## [7.2.0] 2025-02-25
 
