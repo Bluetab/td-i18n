@@ -7,6 +7,7 @@
 - [TD-6467] Include new message for mandatory name in AI Suggestions widget
 - [TD-6927] Qx messages
 - [TD-6677] Update and add some structure notes download and upload messages
+- [TD-7129] Add Concept translation and Translation Prompt messages
 
 ## [7.2.0] 2025-02-25
 
