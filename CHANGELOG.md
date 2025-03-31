@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased] 
+
+### Added
+
+- [TD-7094] New messages for quality control scores in search and quality control deletion form.
+
 ## [7.3.0] 2025-03-18
 
 ### Added
