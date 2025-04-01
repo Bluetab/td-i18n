@@ -1,10 +1,11 @@
 # Changelog
 
-## [Unreleased] 
+## [Unreleased]
 
 ### Added
 
 - [TD-7094] New messages for quality control scores in search and quality control deletion form.
+- [TD-7167] Added message for column updated_at of concept archive
 - [TD-6959] Add Structure Grant Requests messages
 
 ## [7.3.0] 2025-03-18
