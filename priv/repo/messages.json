@@ -3662,7 +3662,7 @@
     "filters.linked_concepts.false": "Sin conceptos enlazados",
     "filters.linked_concepts.true": "Con conceptos enlazados",
     "filters.name.raw": "Nombre",
-    "filters.note_last_changed_by": "Nota modificado por",
+    "filters.note_last_changed_by": "Nota modificada por",
     "filters.note_status": "Estado de la nota",
     "filters.note_status.draft": "Borrador",
     "filters.note_status.rejected": "Rechazado",
