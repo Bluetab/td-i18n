@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.4.0] 2025-04-09
+
+### Changed
+
+- License and td-cache
+
+### Added
+
+- [TD-7094] New messages for quality control scores in search and quality control deletion form.
+- [TD-7167] Message for column updated_at of concept archive
+- [TD-6959] Structure Grant Requests messages
+- [TD-4665] Messages for updated concepts events
+- [TD-7141] Added messages for last changed structure note fields
+
 ## [7.3.0] 2025-03-18
 
 ### Added
