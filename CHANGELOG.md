@@ -8,6 +8,7 @@
 
 ### Added
 
+- [TD-5800] Updated and new messages for mandatory fields in templates
 - [TD-7094] New messages for quality control scores in search and quality control deletion form.
 - [TD-7167] Message for column updated_at of concept archive
 - [TD-6959] Structure Grant Requests messages
