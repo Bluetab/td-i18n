@@ -14,6 +14,7 @@
 - [TD-6959] Structure Grant Requests messages
 - [TD-4665] Messages for updated concepts events
 - [TD-7141] Added messages for last changed structure note fields
+- [TD-7074] Messages for structures linked to concept download
 
 ## [7.3.0] 2025-03-18
 
