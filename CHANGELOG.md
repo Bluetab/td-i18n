@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- [TD-7116] Add Grant Request Reason messages
+
 ### Fixed
 
 - [TD-7226] Enhance SSL configuration handling in production
