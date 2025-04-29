@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-7116] Add Grant Request Reason messages
+- [TD-7159] Add Count messages and updated Error count messages
 
 ### Fixed
 
