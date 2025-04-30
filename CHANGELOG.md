@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.5.0] 2025-04-30
+
+### Added
+
+- [TD-7116] Add Grant Request Reason messages
+- [TD-7159] Add Count messages and updated Error count messages
+
+### Fixed
+
+- [TD-7226] Enhance SSL configuration handling in production
+
 ## [7.4.0] 2025-04-09
 
 ### Changed
@@ -8,11 +19,13 @@
 
 ### Added
 
+- [TD-5800] Updated and new messages for mandatory fields in templates
 - [TD-7094] New messages for quality control scores in search and quality control deletion form.
 - [TD-7167] Message for column updated_at of concept archive
 - [TD-6959] Structure Grant Requests messages
 - [TD-4665] Messages for updated concepts events
 - [TD-7141] Added messages for last changed structure note fields
+- [TD-7074] Messages for structures linked to concept download
 
 ## [7.3.0] 2025-03-18
 
