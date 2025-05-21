@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-6219] i18n messages for data structure suggestions
+
 ## [7.5.0] 2025-04-30
 
 ### Added
