@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-7233] Added messages for quality_control executions
+
 ## [7.5.1] 2025-05-26
 
 ### Added
