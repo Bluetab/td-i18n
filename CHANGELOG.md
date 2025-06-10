@@ -1,5 +1,15 @@
 # Changelog
 
+## [7.6.0] 2025-06-10
+
+### Changed
+
+- [TD-7097] change and add messages for grants download and grants table
+
+### Added
+
+- [TD-7233] Added messages for quality_control executions
+
 ## [7.5.1] 2025-05-26
 
 ### Added
