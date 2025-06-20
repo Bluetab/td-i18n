@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-7300] Add Link origin messages
+
 ## [7.6.0] 2025-06-10
 
 ### Changed
