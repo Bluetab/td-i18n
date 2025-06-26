@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-7300] Add Link origin messages
+- [TD-7236] Added implementation messages for domain updates
 
 ## [7.6.0] 2025-06-10
 
