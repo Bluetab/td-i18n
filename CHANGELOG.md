@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.7.0] 2025-06-30
+
+### Added
+
+- [TD-7299] Refactor gitlab-ci pipeline and add Trivy check
+- [TD-7300] Add Link origin messages
+- [TD-7236] Added implementation messages for domain updates
+
 ## [7.6.0] 2025-06-10
 
 ### Changed
