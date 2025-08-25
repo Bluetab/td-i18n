@@ -1,5 +1,11 @@
 # Changelog
 
+## [7.9.0] 2025-08-25
+
+### Added
+
+- [TD-7294] Add and change some notes upload error messages
+
 ## [7.7.0] 2025-06-30
 
 ### Added
