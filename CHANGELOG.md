@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-7175] Messages for upload button to bulk creation of concept relations to structures
+
 ## [7.9.0] 2025-08-25
 
 ### Added
