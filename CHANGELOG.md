@@ -6,6 +6,7 @@
 
 - [TD-7175] Messages for upload button to bulk creation of concept relations to structures
 - [TD-7402] Messages for data structure empty metadata
+- [TD-7345] Suggestions cosine similarity messages
 
 ## [7.9.0] 2025-08-25
 
