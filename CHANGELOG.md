@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-7301] Add Link Approvals messages
+
 ## [7.10.0] 2025-09-16
 
 ### Added
