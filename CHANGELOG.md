@@ -6,6 +6,10 @@
 
 - [TD-7301] Add Link Approvals messages
 
+### Changed
+
+- [TD-7401] Update `td-cache` version
+
 ## [7.10.0] 2025-09-16
 
 ### Added
