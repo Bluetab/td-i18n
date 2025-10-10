@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-7301] Add Link Approvals messages
+- [TD-7075] Messages for Implementation XLSX upload and download
 
 ### Changed
 
