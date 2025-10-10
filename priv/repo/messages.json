@@ -1019,6 +1019,73 @@
     "implementationsStructures.type.dataset": "Dataset",
     "implementationsStructures.type.population": "Population",
     "implementationsStructures.type.validation": "Validation",
+    "implementations.actions.downloadXlsx.tooltip": "Download implementations",
+    "implementations.bulkUpload.alert.success.header": "File accepted. Status can be checked at the link below:",
+
+    "implementations.bulkUpload.detail.headers": "Headers",
+    "implementations.bulkUpload.detail.templateName": "Template name",
+    "implementations.bulkUpload.detail.domainExternalId": "External domain",
+    "implementations.bulkUpload.detail.ruleName": "Rule",
+
+
+    
+    "implementations.bulkUpload.error.invalid_format": "Invalid file format",
+    "implementations.bulkUpload.error.empty_sheets": "Empty file",
+    "implementations.bulkUpload.error.missing_required_headers": "Missing required headers",
+
+
+    "implementations.bulkUpload.error.invalid_domain_external_id": "Invalid external domain id",
+    "implementations.bulkUpload.error.invalid_template_name": "Invalid template name",
+    "implementations.bulkUpload.error.invalid_associated_rule": "Invalid associated rule",
+    "implementations.bulkUpload.error.implementation_creation_error": "Implementation creation error",
+    
+    "implementations.bulkUpload.info.created": "Created",
+    "implementations.bulkUpload.info.updated": "Updated",
+    "implementations.bulkUpload.info.unchanged": "Unchanged",
+
+
+
+    "implementations.bulkUpload.jobs.header": "My implementations uploads",
+    "implementations.bulkUpload.jobs.subheader": "List of files uploaded",
+    "implementations.bulkUpload.job.header": "Implementations upload detail",
+    "implementations.bulkUpload.job.table.created_at": "Created At",
+    "implementations.bulkUpload.job.table.detail": "Detail",
+    "implementations.bulkUpload.job.table.latest_event_at": "Latest Event",
+    "implementations.bulkUpload.job.table.status": "Status",
+    "implementations.bulkUpload.job.table.inserted_at": "Inserted At",
+    "implementations.bulkUpload.job.table.response": "Response",
+    "implementations.bulkUpload.job.table.filename": "Filename",
+    "implementations.bulkUpload.job.table.no_events": "No events found.",
+    "implementations.bulkUpload.job.table.no_jobs": "No jobs found.",
+
+
+    "implementations.bulkUpload.result.prop.sheet": "Sheet",
+    "implementations.bulkUpload.result.prop.missing_headers": "Missing headers",
+    "implementations.bulkUpload.result.prop.row_number": "Row",
+    "implementations.bulkUpload.result.prop.changes": "Changes",
+
+
+
+
+    "implementations.bulkUpload.result.summary.invalid_sheets": "Invalid sheets",
+
+    "implementations.bulkUpload.result.summary.created": "Created",
+    "implementations.bulkUpload.result.summary.updated": "Updated",
+    "implementations.bulkUpload.result.summary.unchanged": "Unchanged",
+    "implementations.bulkUpload.result.summary.errors": "Errors",
+
+
+
+
+    "implementations.bulkUpload.event.status.PENDING": "Pending",
+    "implementations.bulkUpload.event.status.STARTED": "Started",
+    "implementations.bulkUpload.event.status.COMPLETED": "Completed",
+    "implementations.bulkUpload.event.status.ERROR": "Error",
+    "implementations.bulkUpload.event.status.INFO": "Info",
+    "implementations.bulkUpload.event.status.FAILED": "Failed",
+
+
+
     "ingest.error.existing.ingest": "({text}) There is already a data request term with the indicated name",
     "ingest.events.add_resource_field": "linked a structure with the data request",
     "ingest.events.create_ingest_draft": "created a new draft data request",
@@ -1976,6 +2043,7 @@
     "ruleImplementation.props.campo.placeholder": "Select the corresponding field",
     "ruleImplementation.props.campo_maestro": "Master field",
     "ruleImplementation.props.campo_maestro.placeholder": "Select the corresponding master field",
+    "ruleImplementations.props.df_content": "Template",
     "ruleImplementation.props.esquema": "Structure",
     "ruleImplementation.props.esquema.placeholder": "introduce a structure",
     "ruleImplementation.props.executable": "Executable",
@@ -2260,6 +2328,7 @@
     "sidemenu.implementations_deprecated": "Deprecated",
     "sidemenu.implementations_management": "Drafts",
     "sidemenu.implementations": "Implementations",
+    "sidemenu.implementations_upload_jobs": "My loads",
     "sidemenu.ingests": "Data Requests",
     "sidemenu.jobs": "Jobs",
     "sidemenu.lineage_events": "My graphs",
@@ -4183,6 +4252,69 @@
     "implementationsStructures.type.dataset": "Conjunto de Datos",
     "implementationsStructures.type.population": "Población",
     "implementationsStructures.type.validation": "Validación",
+    "implementations.actions.downloadXlsx.tooltip": "Descargar implementaciones",
+    "implementations.bulkUpload.alert.success.header": "Archivo aceptado. El estado se puede consultar en el siguiente enlace:",
+
+
+    "implementations.bulkUpload.detail.headers": "Encabezados",
+    "implementations.bulkUpload.detail.templateName": "Plantilla",
+    "implementations.bulkUpload.detail.domainExternalId": "Dominio externo",
+    "implementations.bulkUpload.detail.ruleName": "Regla",
+
+
+ 
+
+    "implementations.bulkUpload.error.invalid_format": "Formato de archivo inválido",
+    "implementations.bulkUpload.error.empty_sheets": "Archivo vacío",
+    "implementations.bulkUpload.error.missing_required_headers": "Faltan encabezados requeridos",
+    
+    "implementations.bulkUpload.error.invalid_domain_external_id": "ID de dominio externo inválido",
+    "implementations.bulkUpload.error.invalid_template_name": "Nombre de plantilla inválido",
+    "implementations.bulkUpload.error.invalid_associated_rule": "Regla asociada inválida",
+    "implementations.bulkUpload.error.implementation_creation_error": "Error en la creación de la implementación",
+    
+    "implementations.bulkUpload.info.created": "Creado",
+    "implementations.bulkUpload.info.updated": "Atualizado",
+    "implementations.bulkUpload.info.unchanged": "Sin cambios",
+
+
+   
+    "implementations.bulkUpload.jobs.header": "Mis cargas de implementaciones",
+    "implementations.bulkUpload.jobs.subheader": "Lista de archivos cargados",
+
+    
+    "implementations.bulkUpload.job.header": "Detalle de carga de implementaciones",
+    "implementations.bulkUpload.job.table.created_at": "Fecha de creación",
+    "implementations.bulkUpload.job.table.detail": "Detalle",
+    "implementations.bulkUpload.job.table.latest_event_at": "Último evento",
+    "implementations.bulkUpload.job.table.status": "Estado",
+    "implementations.bulkUpload.job.table.inserted_at": "Fecha de inserción",
+    "implementations.bulkUpload.job.table.response": "Respuesta",
+    "implementations.bulkUpload.job.table.filename": "Nombre del archivo",
+    "implementations.bulkUpload.job.table.no_events": "No se encontraron eventos.",
+    "implementations.bulkUpload.job.table.no_jobs": "No se encontraron trabajos.",
+
+    "implementations.bulkUpload.result.prop.sheet": "Hoja",
+    "implementations.bulkUpload.result.prop.missing_headers": "Faltan encabezados requeridos",
+    "implementations.bulkUpload.result.prop.row_number": "Fila",
+    "implementations.bulkUpload.result.prop.changes": "Cambios",
+
+    "implementations.bulkUpload.result.summary.invalid_sheets": "Hojas inválidas",
+    "implementations.bulkUpload.result.summary.created": "Creados",
+    "implementations.bulkUpload.result.summary.updated": "Actualizados",
+    "implementations.bulkUpload.result.summary.unchanged": "Sin cambios",
+    "implementations.bulkUpload.result.summary.errors": "Errores",
+
+
+
+
+    "implementations.bulkUpload.event.status.PENDING": "Pendiente",
+    "implementations.bulkUpload.event.status.STARTED": "Iniciado",
+    "implementations.bulkUpload.event.status.COMPLETED": "Completado",
+    "implementations.bulkUpload.event.status.ERROR": "Error",
+    "implementations.bulkUpload.event.status.INFO": "Info",
+    "implementations.bulkUpload.event.status.FAILED": "Fallido",
+
     "ingest.error.existing.ingest": "({text}) Ya existe una petición de datos con el nombre indicado",
     "ingest.events.add_resource_field": "asoció un dato a la petición de datos",
     "ingest.events.create_ingest_draft": "creó un nuevo borrador",
@@ -5145,6 +5277,7 @@
     "ruleImplementation.props.campo.placeholder": "Selecciona el campo",
     "ruleImplementation.props.campo_maestro": "Campo maestro",
     "ruleImplementation.props.campo_maestro.placeholder": "Selecciona el campo maestro",
+    "ruleImplementations.props.df_content": "Plantilla",
     "ruleImplementation.props.esquema": "Estructura",
     "ruleImplementation.props.esquema.placeholder": "añade una estructura",
     "ruleImplementation.props.executable": "Ejecutable",
@@ -5428,6 +5561,7 @@
     "sidemenu.implementations_deprecated": "Archivadas",
     "sidemenu.implementations_management": "Borradores",
     "sidemenu.implementations": "Implementaciones",
+    "sidemenu.implementations_upload_jobs": "Mis cargas",
     "sidemenu.ingests": "Peticiones de datos",
     "sidemenu.jobs": "Jobs",
     "sidemenu.lineage_events": "Mis grafos",
