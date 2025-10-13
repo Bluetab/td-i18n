@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.11.0] 2025-10-13
+
+### Added
+
+- [TD-7301] Add Link Approvals messages
+- [TD-7075] Messages for Implementation XLSX upload and download
+
+### Changed
+
+- [TD-7401] Update `td-cache` version
+
 ## [7.10.0] 2025-09-16
 
 ### Added
