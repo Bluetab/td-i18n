@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [7.11.1] 2025-10-15
 
 ### Added
 
