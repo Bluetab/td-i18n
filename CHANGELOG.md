@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-7573] Missing Messages for Implementation XLSX download
+
+
 ## [7.11.0] 2025-10-13
 
 ### Added
