@@ -5,7 +5,7 @@
 ### Added
 
 - [TD-7573] Missing Messages for Implementation XLSX download
-
+- [TD-7487] Messages for grant request status approved
 
 ## [7.11.0] 2025-10-13
 
