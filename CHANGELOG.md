@@ -13,6 +13,7 @@
 
 - [TD-7301] Add Link Approvals messages
 - [TD-7075] Messages for Implementation XLSX upload and download
+- [TD-7487] Messages for grant request status approved
 
 ### Changed
 
