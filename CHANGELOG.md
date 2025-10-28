@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-7340] Added messages for dynamic tables widget
+- [TD-7298] Add Concept Events messages for details
 
 ## [7.11.1] 2025-10-15
 
