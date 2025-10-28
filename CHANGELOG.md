@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-7340] Added messages for dynamic tables widget
+
 ## [7.11.1] 2025-10-15
 
 ### Added
