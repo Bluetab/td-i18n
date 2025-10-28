@@ -1027,23 +1027,17 @@
     "implementations.bulkUpload.detail.domainExternalId": "External domain",
     "implementations.bulkUpload.detail.ruleName": "Rule",
 
-
-    
     "implementations.bulkUpload.error.invalid_format": "Invalid file format",
     "implementations.bulkUpload.error.empty_sheets": "Empty file",
     "implementations.bulkUpload.error.missing_required_headers": "Missing required headers",
-
 
     "implementations.bulkUpload.error.invalid_domain_external_id": "Invalid external domain id",
     "implementations.bulkUpload.error.invalid_template_name": "Invalid template name",
     "implementations.bulkUpload.error.invalid_associated_rule": "Invalid associated rule",
     "implementations.bulkUpload.error.implementation_creation_error": "Implementation creation error",
-    
     "implementations.bulkUpload.info.created": "Created",
     "implementations.bulkUpload.info.updated": "Updated",
     "implementations.bulkUpload.info.unchanged": "Unchanged",
-
-
 
     "implementations.bulkUpload.jobs.header": "My implementations uploads",
     "implementations.bulkUpload.jobs.subheader": "List of files uploaded",
@@ -1058,14 +1052,10 @@
     "implementations.bulkUpload.job.table.no_events": "No events found.",
     "implementations.bulkUpload.job.table.no_jobs": "No jobs found.",
 
-
     "implementations.bulkUpload.result.prop.sheet": "Sheet",
     "implementations.bulkUpload.result.prop.missing_headers": "Missing headers",
     "implementations.bulkUpload.result.prop.row_number": "Row",
     "implementations.bulkUpload.result.prop.changes": "Changes",
-
-
-
 
     "implementations.bulkUpload.result.summary.invalid_sheets": "Invalid sheets",
 
@@ -1074,17 +1064,12 @@
     "implementations.bulkUpload.result.summary.unchanged": "Unchanged",
     "implementations.bulkUpload.result.summary.errors": "Errors",
 
-
-
-
     "implementations.bulkUpload.event.status.PENDING": "Pending",
     "implementations.bulkUpload.event.status.STARTED": "Started",
     "implementations.bulkUpload.event.status.COMPLETED": "Completed",
     "implementations.bulkUpload.event.status.ERROR": "Error",
     "implementations.bulkUpload.event.status.INFO": "Info",
     "implementations.bulkUpload.event.status.FAILED": "Failed",
-
-
 
     "ingest.error.existing.ingest": "({text}) There is already a data request term with the indicated name",
     "ingest.events.add_resource_field": "linked a structure with the data request",
@@ -3026,6 +3011,7 @@
     "template.field.depends.to_be": "Source Value",
     "template.field.description": "Description",
     "template.field.editable": "Editable",
+    "template.field.column_header": "Title header",
     "template.field.hidden_secret": "<Hidden secret value>",
     "template.field.label": "Label",
     "template.field.mandatory.depends": "Mandatory depending on",
@@ -3052,6 +3038,7 @@
     "template.field.type.string": "String",
     "template.field.type.system": "System",
     "template.field.type.table": "Table",
+    "template.field.type.dynamic_table": "Dynamic table",
     "template.field.type.url": "Url",
     "template.field.type.user_group": "User or Group",
     "template.field.type.user": "User",
@@ -4267,34 +4254,27 @@
     "implementations.actions.downloadXlsx.tooltip": "Descargar implementaciones",
     "implementations.bulkUpload.alert.success.header": "Archivo aceptado. El estado se puede consultar en el siguiente enlace:",
 
-
     "implementations.bulkUpload.detail.headers": "Encabezados",
     "implementations.bulkUpload.detail.templateName": "Plantilla",
     "implementations.bulkUpload.detail.domainExternalId": "Dominio externo",
     "implementations.bulkUpload.detail.ruleName": "Regla",
 
-
- 
-
     "implementations.bulkUpload.error.invalid_format": "Formato de archivo inválido",
     "implementations.bulkUpload.error.empty_sheets": "Archivo vacío",
     "implementations.bulkUpload.error.missing_required_headers": "Faltan encabezados requeridos",
-    
+
     "implementations.bulkUpload.error.invalid_domain_external_id": "ID de dominio externo inválido",
     "implementations.bulkUpload.error.invalid_template_name": "Nombre de plantilla inválido",
     "implementations.bulkUpload.error.invalid_associated_rule": "Regla asociada inválida",
     "implementations.bulkUpload.error.implementation_creation_error": "Error en la creación de la implementación",
-    
+
     "implementations.bulkUpload.info.created": "Creado",
     "implementations.bulkUpload.info.updated": "Atualizado",
     "implementations.bulkUpload.info.unchanged": "Sin cambios",
 
-
-   
     "implementations.bulkUpload.jobs.header": "Mis cargas de implementaciones",
     "implementations.bulkUpload.jobs.subheader": "Lista de archivos cargados",
 
-    
     "implementations.bulkUpload.job.header": "Detalle de carga de implementaciones",
     "implementations.bulkUpload.job.table.created_at": "Fecha de creación",
     "implementations.bulkUpload.job.table.detail": "Detalle",
@@ -4316,9 +4296,6 @@
     "implementations.bulkUpload.result.summary.updated": "Actualizados",
     "implementations.bulkUpload.result.summary.unchanged": "Sin cambios",
     "implementations.bulkUpload.result.summary.errors": "Errores",
-
-
-
 
     "implementations.bulkUpload.event.status.PENDING": "Pendiente",
     "implementations.bulkUpload.event.status.STARTED": "Iniciado",
@@ -6272,6 +6249,7 @@
     "template.field.depends.to_be": "Valor origen",
     "template.field.description": "Descripción",
     "template.field.editable": "Editable",
+    "template.field.column_header": "Título de la columna",
     "template.field.hidden_secret": "<Campo secreto oculto>",
     "template.field.label": "Label",
     "template.field.mandatory.depends": "Obligatorio dependiente de",
@@ -6298,6 +6276,7 @@
     "template.field.type.string": "Cadena de Texto",
     "template.field.type.system": "Sistema",
     "template.field.type.table": "Tabla",
+    "template.field.type.dynamic_table": "Tabla dinámica",
     "template.field.type.url": "Enlace",
     "template.field.type.user": "Usuario",
     "template.field.type.user_group": "Usuario o Grupo",
