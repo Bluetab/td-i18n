@@ -1,5 +1,9 @@
 variables:
+<<<<<<< HEAD
   VERSION: "7.12.1" # used for alpha builds
+=======
+  VERSION: "7.11.2" # used for alpha builds
+>>>>>>> b8ad59b210c7b1813b13907d5d08e58c6f0cd65c
   APP_NAME: "td_i18n"
   COMPOSE_FILE: "ci/docker-compose.yml"
   COMPOSE_PROJECT_NAME: "${APP_NAME}_${CI_JOB_ID}"
