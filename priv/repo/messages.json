@@ -137,6 +137,9 @@
     "appSetup.begin.button": "Begin",
     "appSetup.configuration.message": "It seems that everything has been installed correctly. Let's begin configuring application so that we can start using it after a few simple steps",
     "appSetup.welcome.message": "Welcome to Truedat",
+    "audit.events.via.bulk_update": "via bulk update",
+    "audit.events.via.file": "via file",
+    "audit.events.via.single_update": "via web",
     "bucketView.header": "Catalog view",
     "bucketsView.header": "Catalog views",
     "bucketViewConfig.fieldName": "Field name",
@@ -182,23 +185,34 @@
     "concept.events.extra.added_field": "Field {0} added. Current value: {1}",
     "concept.events.extra.added_field_without_target": "Field {0} added",
     "concept.events.extra.changed_field": "Field {0} updated. Current value: {1}",
-    "concept.events.extra.shared_to": "Shared with domains: {0}",
-    "concept.events.extra.domain_updated_with_id": "Domain changed to domain id: {0}",
-    "concept.events.extra.domain_updated_with_names": "Domain: {0} changed to: {1}",
     "concept.events.extra.changed_field_without_target": "Field {0} updated",
-    "concept.events.extra.removed_field_without_target": "Field {0} removed",
     "concept.events.extra.concept_field": "{0}, {1}, {2}, {3}",
+    "concept.events.extra.confidential_true": "Marked as confidential",
+    "concept.events.extra.confidential_false": "Marked as public",
     "concept.events.extra.created_version": "Created version is {0}",
     "concept.events.extra.deleted_version": "Deleted version: {0}",
+    "concept.events.extra.domain_updated_with_id": "Domain changed to domain id: {0}",
+    "concept.events.extra.domain_updated_with_names": "Domain: {0} changed to: {1}",
     "concept.events.extra.fieldvalue": "{key}: {value}",
+    "concept.events.extra.relation_created": "Created a new link to: {0}",
+    "concept.events.extra.relation_deleted": "Deleted link to: {0}",
+    "concept.events.extra.relation_deprecated": "Deprecated link to: {0}",
+    "concept.events.extra.relation_created_business_concept": "Created a new link to concept: {0}",
+    "concept.events.extra.relation_deleted_business_concept": "Deleted link to concept: {0}",
+    "concept.events.extra.relation_deprecated_business_concept": "Deprecated link to concept: {0}",
+    "concept.events.extra.relation_created_data_structure": "Created a new link to structure: {0}",
+    "concept.events.extra.relation_deleted_data_structure": "Deleted link to structure: {0}",
+    "concept.events.extra.relation_deprecated_data_structure": "Deprecated link to structure: {0}",
     "concept.events.extra.removed_field": "Field {0} removed",
-    "concept.events.new_concept_draft": "created a new draft form a published concept",
+    "concept.events.extra.removed_field_without_target": "Field {0} removed",
+    "concept.events.extra.shared_to": "Shared with domains: {0}",
+    "concept.events.new_concept_draft": "created a new draft from a published concept",
     "concept.events.relation_creating": "Adding a link to a structure",
-    "concept.events.relation_created": "Added a link to a structure",
-    "concept.events.relation_deleted": "Removed a link to a structure",
-    "concept.events.relation_deprecated": "Deprecated link to a structure",
-    "concept.events.update_concept": "Updated concept",
-    "concept.events.update_concept_draft": "Updated the draft",
+    "concept.events.relation_created": "created a new link",
+    "concept.events.relation_deleted": "removed a link",
+    "concept.events.relation_deprecated": "deprecated a link",
+    "concept.events.update_concept": "updated the concept",
+    "concept.events.update_concept_draft": "updated the draft",
     "concept.mark_as_confidential": "Mark as confidential",
     "concept.form.name_required": "Name is required to request AI suggestions",
     "concept.mark_as_public": "Mark as public",
@@ -259,7 +273,6 @@
     "conceptRelations.tag": "Tag",
     "conceptRelations.tags": "Tags",
     "conceptRelations.to": "To",
-
     "conceptRelations.approvals.actions.approve": "Approve",
     "conceptRelations.approvals.actions.reject": "Reject",
     "conceptRelations.approvals.header": "Approve Concept Links",
@@ -1027,23 +1040,17 @@
     "implementations.bulkUpload.detail.domainExternalId": "External domain",
     "implementations.bulkUpload.detail.ruleName": "Rule",
 
-
-    
     "implementations.bulkUpload.error.invalid_format": "Invalid file format",
     "implementations.bulkUpload.error.empty_sheets": "Empty file",
     "implementations.bulkUpload.error.missing_required_headers": "Missing required headers",
-
 
     "implementations.bulkUpload.error.invalid_domain_external_id": "Invalid external domain id",
     "implementations.bulkUpload.error.invalid_template_name": "Invalid template name",
     "implementations.bulkUpload.error.invalid_associated_rule": "Invalid associated rule",
     "implementations.bulkUpload.error.implementation_creation_error": "Implementation creation error",
-    
     "implementations.bulkUpload.info.created": "Created",
     "implementations.bulkUpload.info.updated": "Updated",
     "implementations.bulkUpload.info.unchanged": "Unchanged",
-
-
 
     "implementations.bulkUpload.jobs.header": "My implementations uploads",
     "implementations.bulkUpload.jobs.subheader": "List of files uploaded",
@@ -1058,14 +1065,10 @@
     "implementations.bulkUpload.job.table.no_events": "No events found.",
     "implementations.bulkUpload.job.table.no_jobs": "No jobs found.",
 
-
     "implementations.bulkUpload.result.prop.sheet": "Sheet",
     "implementations.bulkUpload.result.prop.missing_headers": "Missing headers",
     "implementations.bulkUpload.result.prop.row_number": "Row",
     "implementations.bulkUpload.result.prop.changes": "Changes",
-
-
-
 
     "implementations.bulkUpload.result.summary.invalid_sheets": "Invalid sheets",
 
@@ -1074,17 +1077,12 @@
     "implementations.bulkUpload.result.summary.unchanged": "Unchanged",
     "implementations.bulkUpload.result.summary.errors": "Errors",
 
-
-
-
     "implementations.bulkUpload.event.status.PENDING": "Pending",
     "implementations.bulkUpload.event.status.STARTED": "Started",
     "implementations.bulkUpload.event.status.COMPLETED": "Completed",
     "implementations.bulkUpload.event.status.ERROR": "Error",
     "implementations.bulkUpload.event.status.INFO": "Info",
     "implementations.bulkUpload.event.status.FAILED": "Failed",
-
-
 
     "ingest.error.existing.ingest": "({text}) There is already a data request term with the indicated name",
     "ingest.events.add_resource_field": "linked a structure with the data request",
@@ -2404,6 +2402,16 @@
     "structure._actions": " ",
     "structure.actions.delete.confirmation.content": "This structure and all its descendant structures will be deleted. Are you sure?",
     "structure.actions.delete.confirmation.header": "Delete Structure",
+    "structure.actions.downloadNotes": "Download notes",
+    "structure.actions.downloadNotes.includeChildren": "Include direct children notes",
+    "structure.actions.downloadNotes.selectStatuses": "Select note statuses",
+    "structure.actions.downloadNotes.modal.title": "Download Structure Notes",
+    "structure.status.draft": "Draft",
+    "structure.status.pending_approval": "Pending approval",
+    "structure.status.rejected": "Rejected",
+    "structure.status.published": "Published",
+    "structure.status.versioned": "Versioned",
+    "structure.status.deprecated": "Deprecated",
     "structure.add.tag": "Add tag",
     "structure.classification.default": "unclassified",
     "structure.confidential": "Confidential",
@@ -2801,6 +2809,7 @@
     "subscriptions.events.grant_request_approval_consensus": "Grant request approval consensus",
     "subscriptions.events.grant_request_group_creation": "Grant request group creation",
     "subscriptions.events.grant_request_rejection": "Grant request rejection",
+    "subscriptions.events.grant_request_status_process_approved": "Grant request status approved",
     "subscriptions.events.grant_request_status_cancellation": "Grant request status cancellation",
     "subscriptions.events.grant_request_status_failure": "Grant request process failure",
     "subscriptions.events.grant_request_status_process_end": "Grant request status process start (processed)",
@@ -3015,6 +3024,7 @@
     "template.field.depends.to_be": "Source Value",
     "template.field.description": "Description",
     "template.field.editable": "Editable",
+    "template.field.column_header": "Title header",
     "template.field.hidden_secret": "<Hidden secret value>",
     "template.field.label": "Label",
     "template.field.mandatory.depends": "Mandatory depending on",
@@ -3041,6 +3051,7 @@
     "template.field.type.string": "String",
     "template.field.type.system": "System",
     "template.field.type.table": "Table",
+    "template.field.type.dynamic_table": "Dynamic table",
     "template.field.type.url": "Url",
     "template.field.type.user_group": "User or Group",
     "template.field.type.user": "User",
@@ -3371,6 +3382,9 @@
     "appSetup.begin.button": "Comenzar",
     "appSetup.configuration.message": "Parece que todo se ha instalado correctamente. Vamos a comenzar a configurar la aplicación para poder empezar a usarla tras unos sencillos pasos",
     "appSetup.welcome.message": "Bienvenido a Truedat",
+    "audit.events.via.bulk_update": "por actualización masiva",
+    "audit.events.via.file": "por fichero",
+    "audit.events.via.single_update": "por web",
     "bucketView.header": "Vista de catálogo",
     "bucketsView.header": "Vistas de catálogo",
     "bucketViewConfig.fieldName": "Nombre del campo",
@@ -3404,7 +3418,7 @@
     "concept.changeDomain.header": "Editar Dominio",
     "concept.changeDomain.label": "Dominios",
     "concept.error.existing.business.concept": "({text}) Ya existe un termino de negocio con el nombre indicado",
-    "concept.events.add_resource_field": "asoció un dato al concepto",
+    "concept.events.add_resource_field": "asoció el campo al concepto",
     "concept.events.concept_deprecated": "archivó el concepto",
     "concept.events.concept_published": "publicó el borrador",
     "concept.events.concept_rejected": "rechazó el borrador",
@@ -3416,21 +3430,32 @@
     "concept.events.extra.added_field": "Campo {0} añadido con valor {1}",
     "concept.events.extra.added_field_without_target": "Campo {0} añadido",
     "concept.events.extra.changed_field": "Campo {0} actualizado a {1}",
-    "concept.events.extra.shared_to": "Compartido con los dominios: {0}",
-    "concept.events.extra.domain_updated_with_id": "Dominio actualizado al dominio id: {0}",
-    "concept.events.extra.domain_updated_with_names": "Dominio: {0} actualizado a: {1}",
     "concept.events.extra.changed_field_without_target": "Campo {0} actualizado",
-    "concept.events.extra.removed_field_without_target": "Campo {0} eliminado",
     "concept.events.extra.concept_field": "{0}, {1}, {2}, {3}",
+    "concept.events.extra.confidential_true": "Marcado como confidencial",
+    "concept.events.extra.confidential_false": "Marcado como público",
     "concept.events.extra.created_version": "Versión creada: {0}",
     "concept.events.extra.deleted_version": "Versión eliminada:  {0}",
+    "concept.events.extra.domain_updated_with_id": "Dominio actualizado al dominio id: {0}",
+    "concept.events.extra.domain_updated_with_names": "Dominio: {0} actualizado a: {1}",
     "concept.events.extra.fieldvalue": "{key}: {value}",
+    "concept.events.extra.relation_created": "Vinculo creado: {0}",
+    "concept.events.extra.relation_deleted": "Vínculo borrado: {0}",
+    "concept.events.extra.relation_deprecated": "Vínculo deprecado: {0}",
+    "concept.events.extra.relation_created_business_concept": "Vinculo a concepto creado: {0}",
+    "concept.events.extra.relation_deleted_business_concept": "Vínculo a concepto borrado: {0}",
+    "concept.events.extra.relation_deprecated_business_concept": "Vínculo a concepto deprecado: {0}",
+    "concept.events.extra.relation_created_data_structure": "Vinculo a estructura creado: {0}",
+    "concept.events.extra.relation_deleted_data_structure": "Vínculo a estructura borrado: {0}",
+    "concept.events.extra.relation_deprecated_data_structure": "Vínculo a estructura deprecado: {0}",
     "concept.events.extra.removed_field": "Campo {0} eliminado",
+    "concept.events.extra.removed_field_without_target": "Campo {0} eliminado",
+    "concept.events.extra.shared_to": "Compartido con los dominios: {0}",
     "concept.events.new_concept_draft": "creó un nuevo borrador a partir de la publicación existente",
     "concept.events.relation_creating": "Creando un nuevo vínculo",
-    "concept.events.relation_created": "Nuevo vínculo",
-    "concept.events.relation_deleted": "Vínculo eliminada",
-    "concept.events.relation_deprecated": "Vínculo deprecado",
+    "concept.events.relation_created": "creó un nuevo vínculo",
+    "concept.events.relation_deleted": "eliminó un vínculo",
+    "concept.events.relation_deprecated": "deprecó un vínculo",
     "concept.events.update_concept": "actualizó el concepto",
     "concept.events.update_concept_draft": "actualizó el borrador",
     "concept.form.name_required": "Se debe rellenar el nombre del concepto para pedir sugerencias",
@@ -4256,34 +4281,27 @@
     "implementations.actions.downloadXlsx.tooltip": "Descargar implementaciones",
     "implementations.bulkUpload.alert.success.header": "Archivo aceptado. El estado se puede consultar en el siguiente enlace:",
 
-
     "implementations.bulkUpload.detail.headers": "Encabezados",
     "implementations.bulkUpload.detail.templateName": "Plantilla",
     "implementations.bulkUpload.detail.domainExternalId": "Dominio externo",
     "implementations.bulkUpload.detail.ruleName": "Regla",
 
-
- 
-
     "implementations.bulkUpload.error.invalid_format": "Formato de archivo inválido",
     "implementations.bulkUpload.error.empty_sheets": "Archivo vacío",
     "implementations.bulkUpload.error.missing_required_headers": "Faltan encabezados requeridos",
-    
+
     "implementations.bulkUpload.error.invalid_domain_external_id": "ID de dominio externo inválido",
     "implementations.bulkUpload.error.invalid_template_name": "Nombre de plantilla inválido",
     "implementations.bulkUpload.error.invalid_associated_rule": "Regla asociada inválida",
     "implementations.bulkUpload.error.implementation_creation_error": "Error en la creación de la implementación",
-    
+
     "implementations.bulkUpload.info.created": "Creado",
     "implementations.bulkUpload.info.updated": "Atualizado",
     "implementations.bulkUpload.info.unchanged": "Sin cambios",
 
-
-   
     "implementations.bulkUpload.jobs.header": "Mis cargas de implementaciones",
     "implementations.bulkUpload.jobs.subheader": "Lista de archivos cargados",
 
-    
     "implementations.bulkUpload.job.header": "Detalle de carga de implementaciones",
     "implementations.bulkUpload.job.table.created_at": "Fecha de creación",
     "implementations.bulkUpload.job.table.detail": "Detalle",
@@ -4305,9 +4323,6 @@
     "implementations.bulkUpload.result.summary.updated": "Actualizados",
     "implementations.bulkUpload.result.summary.unchanged": "Sin cambios",
     "implementations.bulkUpload.result.summary.errors": "Errores",
-
-
-
 
     "implementations.bulkUpload.event.status.PENDING": "Pendiente",
     "implementations.bulkUpload.event.status.STARTED": "Iniciado",
@@ -5639,6 +5654,16 @@
     "structure._actions": " ",
     "structure.actions.delete.confirmation.content": "Se va a borrar esta estructura y todas las estructuras descendientes. ¿Está seguro?",
     "structure.actions.delete.confirmation.header": "Borrar Estructura",
+    "structure.actions.downloadNotes": "Descargar notas",
+    "structure.actions.downloadNotes.includeChildren": "Incluir notas de hijos directos",
+    "structure.actions.downloadNotes.selectStatuses": "Seleccionar estados de notas",
+    "structure.actions.downloadNotes.modal.title": "Descargar Notas de Estructura",
+    "structure.status.draft": "Borrador",
+    "structure.status.pending_approval": "Pendiente de aprobación",
+    "structure.status.rejected": "Rechazada",
+    "structure.status.published": "Publicada",
+    "structure.status.versioned": "Versionada",
+    "structure.status.deprecated": "Obsoleta",
     "structure.add.tag": "Añadir etiqueta",
     "structure.classification.default": "sin clasificar",
     "structure.confidential": "Confidencial",
@@ -6036,6 +6061,7 @@
     "subscriptions.events.grant_request_approval_consensus": "Petición de acceso: consenso de aprobación",
     "subscriptions.events.grant_request_group_creation": "Petición de acceso: creación de petición",
     "subscriptions.events.grant_request_rejection": "Petición de acceso: rechazo",
+    "subscriptions.events.grant_request_status_process_approved": "Petición de acceso: Aprobada",
     "subscriptions.events.grant_request_status_cancellation": "Petición de acceso: cancelación",
     "subscriptions.events.grant_request_status_failure": "Petición de acceso: fallo de procesamiento",
     "subscriptions.events.grant_request_status_process_end": "Petición de acceso: inicio de proceso (procesando)",
@@ -6250,6 +6276,7 @@
     "template.field.depends.to_be": "Valor origen",
     "template.field.description": "Descripción",
     "template.field.editable": "Editable",
+    "template.field.column_header": "Título de la columna",
     "template.field.hidden_secret": "<Campo secreto oculto>",
     "template.field.label": "Label",
     "template.field.mandatory.depends": "Obligatorio dependiente de",
@@ -6276,6 +6303,7 @@
     "template.field.type.string": "Cadena de Texto",
     "template.field.type.system": "Sistema",
     "template.field.type.table": "Tabla",
+    "template.field.type.dynamic_table": "Tabla dinámica",
     "template.field.type.url": "Enlace",
     "template.field.type.user": "Usuario",
     "template.field.type.user_group": "Usuario o Grupo",

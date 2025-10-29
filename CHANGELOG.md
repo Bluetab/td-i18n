@@ -1,11 +1,18 @@
 # Changelog
 
+## [7.12.0] 2025-10-29
+
+### Added
+
+- [TD-7340] Added messages for dynamic tables widget
+- [TD-7298] Add Concept Events messages for details
+
 ## [7.11.1] 2025-10-15
 
 ### Added
 
 - [TD-7573] Missing Messages for Implementation XLSX download
-
+- [TD-7487] Messages for grant request status approved
 
 ## [7.11.0] 2025-10-13
 
@@ -13,6 +20,7 @@
 
 - [TD-7301] Add Link Approvals messages
 - [TD-7075] Messages for Implementation XLSX upload and download
+- [TD-7487] Messages for grant request status approved
 
 ### Changed
 
