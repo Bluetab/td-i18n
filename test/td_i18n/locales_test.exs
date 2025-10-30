@@ -560,25 +560,154 @@ defmodule TdI18n.LocalesTest do
     end
 
     test "changing required locales updates cache" do
-      # Set up initial state
       locale1 = insert(:locale, lang: "en", is_required: true)
       locale2 = insert(:locale, lang: "es")
       locale3 = insert(:locale, lang: "fr")
       I18nCache.put_required_locales([locale1.lang])
 
-      # Add another required locale - context should update cache
       {:ok, _} = Locales.update_locale(locale2, %{is_required: true})
       {:ok, required} = I18nCache.get_required_locales()
       assert Enum.sort(required) == ["en", "es"]
 
-      # Remove first required locale - context should update cache
       {:ok, _} = Locales.update_locale(locale1, %{is_required: false})
       assert {:ok, ["es"]} = I18nCache.get_required_locales()
 
-      # Add third required locale - context should update cache
       {:ok, _} = Locales.update_locale(locale3, %{is_required: true})
       {:ok, required} = I18nCache.get_required_locales()
       assert Enum.sort(required) == ["es", "fr"]
+    end
+  end
+
+  describe "get_locale/1" do
+    test "returns locale when it exists" do
+      locale = insert(:locale)
+      assert %Locale{id: id} = Locales.get_locale(locale.id)
+      assert id == locale.id
+    end
+
+    test "returns nil when locale does not exist" do
+      assert is_nil(Locales.get_locale(999_999))
+    end
+  end
+
+  describe "get_first_locale/0" do
+    test "returns the first locale by id" do
+      locale1 = insert(:locale)
+      locale2 = insert(:locale)
+      locale3 = insert(:locale)
+
+      first = Locales.get_first_locale()
+      assert first.id == min(locale1.id, min(locale2.id, locale3.id))
+    end
+
+    test "returns nil when no locales exist" do
+      assert is_nil(Locales.get_first_locale())
+    end
+  end
+
+  describe "list_locales/1 with filters" do
+    test "filters by is_enabled" do
+      enabled_locale = insert(:locale, is_enabled: true)
+      insert(:locale, is_enabled: false)
+
+      result = Locales.list_locales(filters: [is_enabled: true])
+      assert length(result) == 1
+      assert hd(result).id == enabled_locale.id
+    end
+
+    test "filters by is_default" do
+      default_locale = insert(:locale, is_default: true)
+      insert(:locale, is_default: false)
+
+      result = Locales.list_locales(filters: [is_default: true])
+      assert length(result) == 1
+      assert hd(result).id == default_locale.id
+    end
+
+    test "filters by is_required" do
+      required_locale = insert(:locale, is_required: true)
+      insert(:locale, is_required: false)
+
+      result = Locales.list_locales(filters: [is_required: true])
+      assert length(result) == 1
+      assert hd(result).id == required_locale.id
+    end
+
+    test "filters by lang" do
+      en_locale = insert(:locale, lang: "en")
+      insert(:locale, lang: "es")
+
+      result = Locales.list_locales(filters: [lang: "en"])
+      assert length(result) == 1
+      assert hd(result).id == en_locale.id
+    end
+
+    test "combines multiple filters" do
+      target_locale = insert(:locale, lang: "en", is_enabled: true, is_required: true)
+      insert(:locale, lang: "es", is_enabled: true, is_required: false)
+      insert(:locale, lang: "fr", is_enabled: false, is_required: true)
+
+      result =
+        Locales.list_locales(filters: [lang: "en", is_enabled: true, is_required: true])
+
+      assert length(result) == 1
+      assert hd(result).id == target_locale.id
+    end
+
+    test "supports preload option" do
+      locale = insert(:locale)
+      message = insert(:message, locale_id: locale.id)
+
+      [result] = Locales.list_locales(preload: :messages)
+      assert result.messages != []
+      assert hd(result.messages).id == message.id
+    end
+  end
+
+  describe "create_locales/1" do
+    test "creates multiple locales" do
+      locales_attrs = [
+        %{lang: "en", name: "English", local_name: "English"},
+        %{lang: "es", name: "Spanish", local_name: "Español"},
+        %{lang: "fr", name: "French", local_name: "Français"}
+      ]
+
+      assert {:ok, results} = Locales.create_locales(locales_attrs)
+      assert length(results) == 3
+
+      langs = Enum.map(results, & &1.lang) |> Enum.sort()
+      assert langs == ["en", "es", "fr"]
+    end
+
+    test "handles empty list" do
+      assert {:ok, []} = Locales.create_locales([])
+    end
+
+    test "creates locales even if some fail" do
+      locales_attrs = [
+        %{lang: "en", name: "English", local_name: "English"},
+        %{name: "Spanish", local_name: "Español"},
+        %{lang: "fr", name: "French", local_name: "Français"}
+      ]
+
+      {:ok, results} = Locales.create_locales(locales_attrs)
+
+      valid_results = Enum.reject(results, &match?(%Ecto.Changeset{}, &1))
+      assert length(valid_results) == 2
+    end
+  end
+
+  describe "load_locales_from_file!/1 edge cases" do
+    test "logs warning when file does not exist" do
+      result = Locales.load_locales_from_file!("nonexistent_file.json")
+      assert result == :ok
+    end
+  end
+
+  describe "load_messages_from_file!/1 edge cases" do
+    test "logs warning when file does not exist" do
+      result = Locales.load_messages_from_file!("nonexistent_file.json")
+      assert result == :ok
     end
   end
 end
