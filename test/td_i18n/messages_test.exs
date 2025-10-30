@@ -93,4 +93,105 @@ defmodule TdI18n.MessagesTest do
     assert is_nil(I18nCache.get_definition(lang, message_id))
     on_exit(fn -> I18nCache.delete(lang) end)
   end
+
+  describe "create_messages/2" do
+    test "creates messages for multiple locales" do
+      locale1 = insert(:locale, lang: "en")
+      locale2 = insert(:locale, lang: "es")
+
+      message_id = "test.message.multi"
+
+      langs = [
+        {locale1.id, %{"definition" => "Hello"}},
+        {locale2.id, %{"definition" => "Hola"}}
+      ]
+
+      assert {:ok, messages} = Messages.create_messages(message_id, langs)
+
+      assert length(messages) == 2
+
+      assert Enum.all?(messages, fn m -> m.message_id == message_id end)
+
+      definitions = Enum.map(messages, & &1.definition) |> Enum.sort()
+      assert definitions == ["Hello", "Hola"]
+
+      on_exit(fn ->
+        I18nCache.delete("en")
+        I18nCache.delete("es")
+      end)
+    end
+
+    test "returns error when locale does not exist" do
+      message_id = "test.message.error"
+      langs = [{999_999, %{"definition" => "Test"}}]
+
+      assert {:error, :not_found} = Messages.create_messages(message_id, langs)
+    end
+
+    test "caches messages in I18nCache" do
+      locale1 = insert(:locale, lang: "en")
+      locale2 = insert(:locale, lang: "es")
+
+      message_id = "test.cache.multi"
+
+      langs = [
+        {locale1.id, %{"definition" => "Cached English"}},
+        {locale2.id, %{"definition" => "Cached Spanish"}}
+      ]
+
+      {:ok, _} = Messages.create_messages(message_id, langs)
+
+      assert I18nCache.get_definition("en", message_id) == "Cached English"
+      assert I18nCache.get_definition("es", message_id) == "Cached Spanish"
+
+      on_exit(fn ->
+        I18nCache.delete("en")
+        I18nCache.delete("es")
+      end)
+    end
+  end
+
+  describe "delete_deprecated_messages/2" do
+    test "deletes messages matching message_ids" do
+      message1 = insert(:message, message_id: "deprecated.message.1")
+      message2 = insert(:message, message_id: "deprecated.message.2")
+      message3 = insert(:message, message_id: "keep.message")
+
+      Messages.delete_deprecated_messages(["deprecated.message.1", "deprecated.message.2"], [])
+
+      assert_raise Ecto.NoResultsError, fn -> Messages.get_message!(message1.id) end
+      assert_raise Ecto.NoResultsError, fn -> Messages.get_message!(message2.id) end
+      assert Messages.get_message!(message3.id)
+    end
+
+    test "deletes messages matching definitions" do
+      message1 = insert(:message, definition: "Old Definition 1")
+      message2 = insert(:message, definition: "Old Definition 2")
+      message3 = insert(:message, definition: "Keep Definition")
+
+      Messages.delete_deprecated_messages([], ["Old Definition 1", "Old Definition 2"])
+
+      assert_raise Ecto.NoResultsError, fn -> Messages.get_message!(message1.id) end
+      assert_raise Ecto.NoResultsError, fn -> Messages.get_message!(message2.id) end
+      assert Messages.get_message!(message3.id)
+    end
+
+    test "deletes messages matching either message_ids or definitions" do
+      message1 = insert(:message, message_id: "deprecated.id", definition: "Keep Def")
+      message2 = insert(:message, message_id: "keep.id", definition: "Deprecated Def")
+      message3 = insert(:message, message_id: "keep.id2", definition: "Keep Def2")
+
+      Messages.delete_deprecated_messages(["deprecated.id"], ["Deprecated Def"])
+
+      assert_raise Ecto.NoResultsError, fn -> Messages.get_message!(message1.id) end
+      assert_raise Ecto.NoResultsError, fn -> Messages.get_message!(message2.id) end
+      assert Messages.get_message!(message3.id)
+    end
+
+    test "returns ok when no messages match" do
+      insert(:message, message_id: "keep.message", definition: "Keep Definition")
+
+      assert :ok = Messages.delete_deprecated_messages(["nonexistent"], ["nonexistent"])
+    end
+  end
 end
