@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- [TD-7648] Add Download notes tooltip message
+
 ## [7.12.0] 2025-10-29
 
 ### Added
