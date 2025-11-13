@@ -3,8 +3,8 @@
 ## [Unreleased]
 
 ### Added
-
 - [TD-7648] Add Download notes tooltip message
+- [TD-7579] Data view form new messages
 
 ## [7.12.0] 2025-10-29
 
