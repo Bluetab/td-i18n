@@ -180,4 +180,55 @@ defmodule TdI18n.Cache.LocaleCacheTest do
       assert rendered_locale["name"] == "Updated During Refresh"
     end
   end
+
+  describe "get_stats/0" do
+    test "returns initial stats with zero refresh count" do
+      assert %{refresh_count: 0} = LocaleCache.get_stats()
+    end
+
+    test "increments refresh count after cache refresh" do
+      insert(:locale, is_enabled: true)
+
+      assert %{refresh_count: 0} = LocaleCache.get_stats()
+
+      LocaleCache.get_locales()
+      assert %{refresh_count: 1} = LocaleCache.get_stats()
+
+      LocaleCache.refresh()
+      Process.sleep(50)
+      assert %{refresh_count: 2} = LocaleCache.get_stats()
+    end
+  end
+
+  describe "refresh/0" do
+    test "ignores refresh when already pending" do
+      insert(:locale, is_enabled: true)
+
+      :sys.replace_state(LocaleCache, fn state ->
+        %{state | refresh_timer: :pending}
+      end)
+
+      LocaleCache.refresh()
+
+      state = :sys.get_state(LocaleCache)
+      assert state.refresh_timer == :pending
+    end
+
+    test "triggers refresh when not pending" do
+      insert(:locale, is_enabled: true)
+      LocaleCache.get_locales()
+
+      initial_stats = LocaleCache.get_stats()
+
+      :sys.replace_state(LocaleCache, fn state ->
+        %{state | refresh_timer: nil}
+      end)
+
+      LocaleCache.refresh()
+      Process.sleep(50)
+
+      new_stats = LocaleCache.get_stats()
+      assert new_stats.refresh_count > initial_stats.refresh_count
+    end
+  end
 end
