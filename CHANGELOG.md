@@ -1,8 +1,15 @@
 # Changelog
 
-## [Unreleased]
+## [7.13.0] 2025-11-18
 
 ### Added
+
+- [TD-7627] Update and refactor test
+
+## [7.12.0] 2025-10-29
+
+### Added
+
 - [TD-7648] Add Download notes tooltip message
 - [TD-7579] Data view form new messages
 
