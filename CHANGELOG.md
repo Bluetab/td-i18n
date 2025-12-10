@@ -5,7 +5,6 @@
 ### Added
 
 - [TD-7643] Messages for data view summary
-- [TD-7657] Quality control event messages
 
 ## [7.13.0] 2025-11-18
 
