@@ -1,5 +1,11 @@
 # Changelog
 
+## [7.14.0] 2025-12-10
+
+### Added
+
+- [TD-7643] Messages for data view summary
+
 ## [7.13.0] 2025-11-18
 
 ### Added
