@@ -4,8 +4,8 @@
 
 ### Added
 
-
 - [TD-7657] Quality control event messages
+- [TD-7682] Quality control notifications messages
 
 ## [7.14.0] 2025-12-10
 
