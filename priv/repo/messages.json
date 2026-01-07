@@ -210,7 +210,7 @@
     "concept.events.extra.removed_field_without_target": "Field {0} removed",
     "concept.events.extra.shared_to": "Shared with domains: {0}",
     "concept.events.new_concept_draft": "created a new draft from a published concept",
-    "concept.events.new_published_version": "Created a new published version",
+    "concept.events.new_published_version": "created a new published version",
     "concept.events.relation_creating": "Adding a link to a structure",
     "concept.events.relation_created": "created a new link",
     "concept.events.relation_deleted": "removed a link",
