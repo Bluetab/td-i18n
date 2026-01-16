@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Fixed
+
+- [TD-7775] Add new message for concept file uploads errors
+
 ## [8.0.0] 2026-01-12
 
 ### Added
