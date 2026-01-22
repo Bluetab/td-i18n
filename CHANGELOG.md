@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+-[TD-7573] Message for implementation bulk upload details 
+
 ### Fixed
 
 - [TD-7775] Add new message for concept file uploads errors
