@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased]
+## [Unreleased]
+
+### Added
+
+- [TD-7838] Quality control segmentation management
 
 ### Fixed
 
