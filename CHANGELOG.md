@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.1.0] 2026-02-03
+
+### Added
+
+- [TD-7838] Quality control segmentation management
+- [TD-7573] Message for implementation bulk upload details 
+- [TD-7787] Add Update Jobs messages
+
+### Fixed
+
+- [TD-7775] Add new message for concept file uploads errors
+
 ## [8.0.0] 2026-01-12
 
 ### Added
