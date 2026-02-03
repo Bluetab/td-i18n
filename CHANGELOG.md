@@ -5,10 +5,8 @@
 ### Added
 
 - [TD-7838] Quality control segmentation management
-
-### Added
-
--[TD-7573] Message for implementation bulk upload details 
+- [TD-7573] Message for implementation bulk upload details 
+- [TD-7787] Add Update Jobs messages
 
 ### Fixed
 
