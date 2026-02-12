@@ -1,9 +1,14 @@
 # Changelog
 
-## [8.1.0] 2026-02-03
+## [Unreleased]
 
 ### Added
 
+- [TD-7861] Quality control links messages
+
+## [8.1.0] 2026-02-03
+
+### Added
 - [TD-7838] Quality control segmentation management
 - [TD-7573] Message for implementation bulk upload details 
 - [TD-7787] Add Update Jobs messages
