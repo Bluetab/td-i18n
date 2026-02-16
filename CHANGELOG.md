@@ -5,6 +5,7 @@
 ### Added
 
 - [TD-7861] Quality control links messages
+- [TD-7696] Messages for permission `link_structure_to_structure`
 
 ## [8.1.0] 2026-02-03
 
