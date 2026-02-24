@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.2.0] 2026-02-24
+
+### Added
+
+- [TD-7861] Quality control links messages
+- [TD-7696] Messages for permission `link_structure_to_structure`
+- [TD-7826] Quality control resource type and status for subscription configuration
+
 ## [8.1.0] 2026-02-03
 
 ### Added
